@@ -1,0 +1,30 @@
+---
+name:             ParticleChase
+main:             presentkim\particlechase\ParticleChaseMain
+version:          1.0.0
+api:              [3.0.0, 3.0.0-ALPHA10]
+author:           PresentKim
+
+permissions:
+  particlechase.cmd:
+    description:  ParticleChase main command
+    default:      op
+  particlechase.set.cmd:
+    description:  ParticleChase set command
+    default:      op
+  particlechase.remove.cmd:
+    description:  ParticleChase remove command
+    default:      op
+  particlechase.list.cmd:
+    description:  ParticleChase list command
+    default:      op
+  particlechase.lang.cmd:
+    description:  ParticleChase lang command
+    default:      op
+  particlechase.reload.cmd:
+    description:  ParticleChase reload command
+    default:      op
+  particlechase.save.cmd:
+    description:  ParticleChase save command
+    default:      op
+...

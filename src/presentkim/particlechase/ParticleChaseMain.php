@@ -1,0 +1,263 @@
+<?php
+
+namespace presentkim\particlechase;
+
+use pocketmine\block\BlockFactory;
+use pocketmine\command\{
+  CommandExecutor, PluginCommand
+};
+use pocketmine\item\Item;
+use pocketmine\level\particle\{
+  AngryVillagerParticle, BlockForceFieldParticle, BubbleParticle, CriticalParticle, DustParticle, EnchantmentTableParticle, EnchantParticle, EntityFlameParticle, ExplodeParticle, FlameParticle, GenericParticle, HappyVillagerParticle, HeartParticle, HugeExplodeParticle, HugeExplodeSeedParticle, InkParticle, InstantEnchantParticle, ItemBreakParticle, LavaDripParticle, PortalParticle, RainSplashParticle, RedstoneParticle, SmokeParticle, SplashParticle, SporeParticle, TerrainParticle, WaterDripParticle, WaterParticle
+};
+use pocketmine\math\Vector3;
+use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\{
+  Task, TaskHandler
+};
+use pocketmine\Server;
+use presentkim\particlechase\{
+  command\CommandListener, util\Translation
+};
+use function presentkim\particlechase\util\{
+  extensionLoad, toInt
+};
+
+class ParticleChaseMain extends PluginBase{
+
+    /** @var self */
+    private static $instance = null;
+
+    /** @var \Sqlite3 */
+    private $db;
+
+    /** @var PluginCommand[] */
+    private $commands = [];
+
+    /** @var TaskHandler */
+    private $taskHandler = null;
+
+    /** @return self */
+    public static function getInstance() : self{
+        return self::$instance;
+    }
+
+    public function onLoad() : void{
+        if (self::$instance === null) {
+            // register instance
+            self::$instance = $this;
+
+            // load utils
+            $this->getServer()->getLoader()->loadClass('presentkim\particlechase\util\Utils');
+        }
+
+        // init data.sqlite3
+        extensionLoad('sqlite3');
+        $dataFolder = $this->getDataFolder();
+        if (!file_exists($dataFolder)) {
+            mkdir($dataFolder, 0777, true);
+        }
+        $this->db = new \SQLITE3($dataFolder . 'data.sqlite3');
+    }
+
+    /**
+     *
+     */
+    public function onEnable() : void{
+        $this->load();
+
+        // start repeating task
+        $this->taskHandler = Server::getInstance()->getScheduler()->scheduleRepeatingTask(new class() extends Task{
+
+            /** @var ParticleChaseMain */
+            private $owner;
+
+            public function __construct(){
+                $this->owner = ParticleChaseMain::getInstance();
+            }
+
+            public function onRun(int $currentTick){
+                foreach (Server::getInstance()->getOnlinePlayers() as $key => $value) {
+                    $playerName = $value->getLowerCaseName();
+                    $result = $this->owner->query("SELECT particle_name, particle_data FROM particle_chase_list WHERE player_name = \"$playerName\";")->fetchArray(SQLITE3_NUM);
+                    if ($result[0] !== null) {
+                        $particle = $this->getParticle($value->add(0, 2, 0), $result[0], $result[1]);
+                        if ($particle !== null) {
+                            $value->getLevel()->addParticle($particle);
+                        }
+                    }
+                }
+            }
+
+            /**
+             * @param Vector3 $vec
+             * @param string  $name
+             * @param string  $data = ''
+             *
+             * @return GenericParticle|null
+             */
+            private function getParticle(Vector3 $vec, string $name, string $data = '') : ?GenericParticle{
+                if (strcasecmp($name, "VILLAGER_ANGRY") == 0) {
+                    return new AngryVillagerParticle($vec);
+                } elseif (strcasecmp($name, "BLOCK_FORCE_FIELD") == 0) {
+                    return new BlockForceFieldParticle($vec, toInt($data, 0));
+                } elseif (strcasecmp($name, "BUBBLE") == 0) {
+                    return new BubbleParticle($vec);
+                } elseif (strcasecmp($name, "CRITICAL") == 0) {
+                    return new CriticalParticle($vec, toInt($data, 2));
+                } elseif (strcasecmp($name, "DUST") == 0) {
+                    $datas = explode(' ', $data);
+                    $r = isset($datas[0]) ? toInt($datas[0], 0) : 0;
+                    $g = isset($datas[1]) ? toInt($datas[1], 0) : 0;
+                    $b = isset($datas[2]) ? toInt($datas[2], 0) : 0;
+                    $a = isset($datas[2]) ? toInt($datas[2], 255) : 255;
+                    return new DustParticle($vec, $r, $g, $b, $a);
+                } elseif (strcasecmp($name, "ENCHANTMENT_TABLE") == 0) {
+                    return new EnchantmentTableParticle($vec);
+                } elseif (strcasecmp($name, "MOB_SPELL") == 0) {
+                    return new EnchantParticle($vec);
+                } elseif (strcasecmp($name, "MOB_FLAME") == 0) {
+                    return new EntityFlameParticle($vec);
+                } elseif (strcasecmp($name, "EXPLODE") == 0) {
+                    return new ExplodeParticle($vec);
+                } elseif (strcasecmp($name, "FLAME") == 0) {
+                    return new FlameParticle($vec);
+                } elseif (strcasecmp($name, "VILLAGER_HAPPY") == 0) {
+                    return new HappyVillagerParticle($vec);
+                } elseif (strcasecmp($name, "HEART") == 0) {
+                    return new HeartParticle($vec, toInt($data, 0));
+                } elseif (strcasecmp($name, "HUGE_EXPLODE") == 0) {
+                    return new HugeExplodeParticle($vec);
+                } elseif (strcasecmp($name, "HUGE_EXPLODE_SEED") == 0) {
+                    return new HugeExplodeSeedParticle($vec);
+                } elseif (strcasecmp($name, "INK") == 0) {
+                    return new InkParticle($vec, toInt($data, 0));
+                } elseif (strcasecmp($name, "MOB_SPELL_INSTANTANEOUS") == 0) {
+                    return new InstantEnchantParticle($vec);
+                } elseif (strcasecmp($name, "ITEM_BREAK") == 0) {
+                    $datas = explode(' ', $data);
+                    $id = isset($datas[0]) ? (toInt($datas[0], 1)) : 1;
+                    $meta = isset($datas[1]) ? (toInt($datas[1], 0)) : 0;
+                    return new ItemBreakParticle($vec, Item::get($id, $meta));
+                } elseif (strcasecmp($name, "DRIP_LAVA") == 0) {
+                    return new LavaDripParticle($vec);
+                } elseif (strcasecmp($name, "PORTAL") == 0) {
+                    return new PortalParticle($vec);
+                } elseif (strcasecmp($name, "RAIN_SPLASH") == 0) {
+                    return new RainSplashParticle($vec);
+                } elseif (strcasecmp($name, "REDSTONE") == 0) {
+                    return new RedstoneParticle($vec, toInt($data, 1));
+                } elseif (strcasecmp($name, "SMOKE") == 0) {
+                    return new SmokeParticle($vec, toInt($data, 0));
+                } elseif (strcasecmp($name, "WATER_SPLASH") == 0) {
+                    return new SplashParticle($vec);
+                } elseif (strcasecmp($name, "TOWN_AURA") == 0) {
+                    return new SporeParticle($vec);
+                } elseif (strcasecmp($name, "TERRAIN") == 0) {
+                    $datas = explode(' ', $data);
+                    $id = isset($datas[0]) ? (toInt($datas[0], 1)) : 1;
+                    $meta = isset($datas[1]) ? (toInt($datas[1], 0)) : 0;
+                    return new TerrainParticle($vec, BlockFactory::get($id, $meta));
+                } elseif (strcasecmp($name, "DRIP_WATER") == 0) {
+                    return new WaterDripParticle($vec);
+                } elseif (strcasecmp($name, "WATER_WAKE") == 0) {
+                    return new WaterParticle($vec);
+                } else {
+                    return null;
+                }
+            }
+        }, 2);
+    }
+
+    public function onDisable() : void{
+        $this->save();
+
+        // stop repeating task
+        $this->taskHandler->cancel();
+    }
+
+    /**
+     * @param string $query
+     *
+     * @return \SQLite3Result
+     */
+    public function query(string $query) : \SQLite3Result{
+        return $this->db->query($query);
+    }
+
+    public function load() : void{
+        $dataFolder = $this->getDataFolder();
+        if (!file_exists($dataFolder)) {
+            mkdir($dataFolder, 0777, true);
+        }
+
+        // load db
+        $this->query("
+            CREATE TABLE IF NOT EXISTS particle_chase_list (
+                player_name   TEXT NOT NULL,
+                particle_name TEXT NOT NULL,
+                particle_data TEXT NOT NULL,
+                PRIMARY KEY (player_name)
+            );
+            COMMIT;
+        ");
+
+        // load lang
+        $langfilename = $dataFolder . 'lang.yml';
+        if (!file_exists($langfilename)) {
+            Translation::loadFromResource($this->getResource('lang/eng.yml'));
+            Translation::save($langfilename);
+        } else {
+            Translation::load($langfilename);
+        }
+
+        // unregister commands
+        foreach ($this->commands as $command) {
+            $this->getServer()->getCommandMap()->unregister($command);
+        }
+        $this->commands = [];
+
+        // register commands
+        $this->registerCommand(new CommandListener($this), Translation::translate('command-particlechase'), 'ParticleChase', 'particlechase.cmd', Translation::translate('command-particlechase@description'), Translation::translate('command-particlechase@usage'), Translation::getArray('command-particlechase@aliases'));
+    }
+
+    public function save() : void{
+        $dataFolder = $this->getDataFolder();
+        if (!file_exists($dataFolder)) {
+            mkdir($dataFolder, 0777, true);
+        }
+
+        // save lang
+        $langfilename = $dataFolder . 'lang.yml';
+        if (!file_exists($langfilename)) {
+            Translation::loadFromResource($this->getResource('lang/eng.yml'));
+            Translation::save($langfilename);
+        } else {
+            Translation::load($langfilename);
+        }
+    }
+
+    /**
+     * @param CommandExecutor $executor
+     * @param                 $name
+     * @param                 $fallback
+     * @param                 $permission
+     * @param string          $description
+     * @param null            $usageMessage
+     * @param array|null      $aliases
+     */
+    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null) : void{
+        $command = new PluginCommand($name, $this);
+        $command->setExecutor($executor);
+        $command->setPermission($permission);
+        $command->setDescription($description);
+        $command->setUsage($usageMessage ?? ('/' . $name));
+        if (is_array($aliases)) {
+            $command->setAliases($aliases);
+        }
+
+        $this->getServer()->getCommandMap()->register($fallback, $command);
+        $this->commands[] = $command;
+    }
+
+}

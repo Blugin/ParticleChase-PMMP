@@ -1,0 +1,42 @@
+---
+prefix: "[ParticleChase] "
+
+command-generic-failure@permission : "You do not have permission to use this command"
+command-generic-failure@invalid-player: "{%0} is invalid player name"
+
+command-particlechase: "particlechase"
+command-particlechase@usage: "/ParticleChase <set | remove | list | lang | reload | save>"
+command-particlechase@description: "Main command of ParticleChase"
+command-particlechase@aliases: ["pc"]
+
+command-particlechase-set: "set"
+command-particlechase-set@usage: "/ParticleChase Set <player name> <particle name>"
+command-particlechase-set@success: "You have successfully set up a particle of {%0} to {%1}"
+command-particlechase-set@failure-invalid-particle: "{%0} is invalid particle name"
+command-particlechase-set@aliases: ["s"]
+
+command-particlechase-remove: "remove"
+command-particlechase-remove@usage: "/ParticleChase Remove <player name>"
+command-particlechase-remove@success: "You have successfully remove a particle of {%0} to {%1}"
+command-particlechase-remove@aliases: ["r"]
+
+command-particlechase-list: "list"
+command-particlechase-list@usage: "/ParticleChase List <Page>"
+command-particlechase-list@head: "--- Showing setted player list (page {%0} of {%1}) ---"
+command-particlechase-list@item: "    {%0} => {%1}"
+command-particlechase-list@aliases: ["l"]
+
+command-particlechase-lang: "lang"
+command-particlechase-lang@usage: "/ParticleChase Lang <language prefix>"
+command-particlechase-lang@success: "You have successfully load {%0} language file."
+command-particlechase-lang@failure: "{%0} is undefined language prefix"
+command-particlechase-lang@aliases: ["language"]
+
+command-particlechase-reload: "reload"
+command-particlechase-reload@success: "All data reloaded successfully"
+command-particlechase-reload@aliases: ["rl"]
+
+command-particlechase-save: "save"
+command-particlechase-save@success: "All data saved successfully"
+command-particlechase-save@aliases: ["sv"]
+...
