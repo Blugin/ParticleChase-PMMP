@@ -1,6 +1,9 @@
 ---
 prefix: "[ParticleChase] "
 
+modename@foot : "발밑"
+modename@head : "머리"
+
 command-generic-failure@permission : "당신은 이 명령어를 사용할 권한이 없습니다."
 command-generic-failure@invalid-player: "{%0}는 잘못된 플레이어명입니다."
 
