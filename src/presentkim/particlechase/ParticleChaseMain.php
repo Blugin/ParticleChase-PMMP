@@ -95,12 +95,12 @@ class ParticleChaseMain extends PluginBase{
                     $playerName = $value->getLowerCaseName();
                     if (isset($playerData[$playerName])) {
                         $data = $playerData[$playerName];
-                        if ($data[2] == 1) {
+                        if ($data[1] == 1) {
                             $vec = $value->add(0, $value->height, 0);
                         } else {
                             $vec = $value;
                         }
-                        if (($particle = $this->getParticle($vec, $data[0], $data[1])) !== null) {
+                        if (($particle = $this->getParticle($vec, $data[0], $data[2])) !== null) {
                             $value->getLevel()->addParticle($particle);
                         }
                     }
