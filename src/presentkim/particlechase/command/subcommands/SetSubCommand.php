@@ -8,7 +8,6 @@ use pocketmine\Server;
 use presentkim\particlechase\{
   ParticleChaseMain as Plugin, util\Translation, command\SubCommand
 };
-use function strtolower;
 
 class SetSubCommand extends SubCommand{
 
@@ -25,26 +24,25 @@ class SetSubCommand extends SubCommand{
     public function onCommand(CommandSender $sender, array $args){
         if (isset($args[1])) {
             $playerName = strtolower($args[0]);
+
+            $config = $this->owner->getConfig();
+
             $player = Server::getInstance()->getPlayerExact($playerName);
-            $result = $this->owner->query("SELECT particle_name FROM particle_chase_list WHERE player_name = \"$playerName\";")->fetchArray(SQLITE3_NUM)[0];
-            if ($player === null && $result === null) {
+            $exists = $config->exists($playerName);
+            if ($player === null && !$exists) {
                 $sender->sendMessage($this->prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
             } else {
                 $particleName = strtoupper($args[1]);
-                $particleData = implode(' ', array_slice($args, 2));
+                $particleMode = $args[2] ?? 0;
+                $particleData = implode(' ', array_slice($args, 3));
                 if (!defined(Particle::class . "::TYPE_" . $particleName)) {
                     $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('failure-invalid-particle'), $args[1]));
                 } else {
-                    if ($result === null) { // When first query result is not exists
-                        $this->owner->query("INSERT INTO particle_chase_list VALUES (\"$playerName\", \"$particleName\", \"$particleData\");");
-                    } else {
-                        $this->owner->query("
-                            UPDATE particle_chase_list
-                                set particle_name = \"$particleName\",
-                                    particle_data = \"$particleData\"
-                            WHERE player_name = \"$playerName\";
-                        ");
-                    }
+                    $config->set($playerName, [
+                      $particleName,
+                      $particleMode,
+                      $particleData,
+                    ]);
                     $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $playerName, $particleName));
                 }
             }
