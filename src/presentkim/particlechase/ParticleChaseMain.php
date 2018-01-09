@@ -62,8 +62,9 @@ class ParticleChaseMain extends PluginBase{
                 while ($result = $results->fetchArray(SQLITE3_NUM)) {
                     $key = mb_convert_encoding($result[0], "ASCII", "UTF-8");
                     $value = [];
-                    $value [] = mb_convert_encoding($result[1], "ASCII", "UTF-8");
-                    $value [] = mb_convert_encoding($result[2], "ASCII", "UTF-8");
+                    $value[] = mb_convert_encoding($result[1], "ASCII", "UTF-8"); // particle_name
+                    $value[] = mb_convert_encoding($result[2], "ASCII", "UTF-8"); // particle_data
+                    $value[] = 0; // particle_mode
                     $playerData[$key] = $value;
                 }
                 $config->set('playerData', $playerData);
@@ -91,12 +92,18 @@ class ParticleChaseMain extends PluginBase{
             }
 
             public function onRun(int $currentTick){
+                $configData = $this->owner->getConfig()->getAll();
+                $playerData = $configData['playerData'];
                 foreach (Server::getInstance()->getOnlinePlayers() as $key => $value) {
                     $playerName = $value->getLowerCaseName();
-                    $result = $this->owner->query("SELECT particle_name, particle_data FROM particle_chase_list WHERE player_name = \"$playerName\";")->fetchArray(SQLITE3_NUM);
-                    if ($result[0] !== null) {
-                        $particle = $this->getParticle($value->add(0, 2, 0), $result[0], $result[1]);
-                        if ($particle !== null) {
+                    if (isset($playerData[$playerName])) {
+                        $data = $playerData[$playerName];
+                        if ($data[2] == 1) {
+                            $vec = $value->add(0, $value->height, 0);
+                        } else {
+                            $vec = $value;
+                        }
+                        if (($particle = $this->getParticle($vec, $data[0], $data[1])) !== null) {
                             $value->getLevel()->addParticle($particle);
                         }
                     }
@@ -223,7 +230,7 @@ class ParticleChaseMain extends PluginBase{
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
         }
-        
+
         // save db
         $this->saveConfig();
 
