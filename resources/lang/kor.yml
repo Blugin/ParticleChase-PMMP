@@ -23,7 +23,7 @@ command-particlechase-remove@aliases: ["r"]
 command-particlechase-list: "list"
 command-particlechase-list@usage: "/ParticleChase List <페이지>"
 command-particlechase-list@head: "--- 목록 (page {%0} of {%1}) ---"
-command-particlechase-list@item: " - {%0} => {%2}"
+command-particlechase-list@item: " - {%0} => {%1}({%2}) {%3}"
 command-particlechase-list@aliases: ["l"]
 
 command-particlechase-lang: "lang"

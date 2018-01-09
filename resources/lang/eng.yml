@@ -1,6 +1,9 @@
 ---
 prefix: "[ParticleChase] "
 
+modename@foot : "Foot"
+modename@head : "head"
+
 command-generic-failure@permission : "You do not have permission to use this command"
 command-generic-failure@invalid-player: "{%0} is invalid player name"
 
@@ -23,7 +26,7 @@ command-particlechase-remove@aliases: ["r"]
 command-particlechase-list: "list"
 command-particlechase-list@usage: "/ParticleChase List <Page>"
 command-particlechase-list@head: "--- List (page {%0} of {%1}) ---"
-command-particlechase-list@item: " - {%0} => {%1}"
+command-particlechase-list@item: " - {%0} => {%1}({%2}) {%3}"
 command-particlechase-list@aliases: ["l"]
 
 command-particlechase-lang: "lang"
