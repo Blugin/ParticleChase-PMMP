@@ -58,16 +58,14 @@ class ParticleChaseMain extends PluginBase{
                 $db = new \SQLITE3($sqlite3Path);
                 $results = $db->query("SELECT * FROM particle_chase_list;");
                 $config = $this->getConfig();
-                $playerData = [];
                 while ($result = $results->fetchArray(SQLITE3_NUM)) {
                     $key = mb_convert_encoding($result[0], "ASCII", "UTF-8");
                     $value = [];
                     $value[] = mb_convert_encoding($result[1], "ASCII", "UTF-8"); // particle_name
                     $value[] = mb_convert_encoding($result[2], "ASCII", "UTF-8"); // particle_data
                     $value[] = 0; // particle_mode
-                    $playerData[$key] = $value;
+                    $config->set($key, $value);
                 }
-                $config->set('playerData', $playerData);
                 $this->saveConfig();
                 unset($db, $results, $result);
                 unlink($sqlite3Path);
