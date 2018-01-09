@@ -92,8 +92,7 @@ class ParticleChaseMain extends PluginBase{
             }
 
             public function onRun(int $currentTick){
-                $configData = $this->owner->getConfig()->getAll();
-                $playerData = $configData['playerData'];
+                $playerData = $this->owner->getConfig()->getAll();
                 foreach (Server::getInstance()->getOnlinePlayers() as $key => $value) {
                     $playerName = $value->getLowerCaseName();
                     if (isset($playerData[$playerName])) {
