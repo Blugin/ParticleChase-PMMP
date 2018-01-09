@@ -62,8 +62,8 @@ class ParticleChaseMain extends PluginBase{
                     $key = mb_convert_encoding($result[0], "ASCII", "UTF-8");
                     $value = [];
                     $value[] = mb_convert_encoding($result[1], "ASCII", "UTF-8"); // particle_name
-                    $value[] = mb_convert_encoding($result[2], "ASCII", "UTF-8"); // particle_data
                     $value[] = 0; // particle_mode
+                    $value[] = mb_convert_encoding($result[2], "ASCII", "UTF-8"); // particle_data
                     $config->set($key, $value);
                 }
                 $this->saveConfig();
