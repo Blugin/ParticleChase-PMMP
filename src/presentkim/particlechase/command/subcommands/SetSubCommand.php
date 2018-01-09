@@ -22,7 +22,7 @@ class SetSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args) : bool{
+    public function onCommand(CommandSender $sender, array $args){
         if (isset($args[1])) {
             $playerName = strtolower($args[0]);
             $player = Server::getInstance()->getPlayerExact($playerName);

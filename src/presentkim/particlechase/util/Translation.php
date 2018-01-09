@@ -8,12 +8,12 @@ class Translation{
     private static $lang = [];
 
     /** @param string $filename */
-    public static function load(string $filename) : void{
+    public static function load(string $filename){
         self::$lang = yaml_parse_file($filename);
     }
 
     /** @param resource $resource */
-    public static function loadFromResource($resource) : void{
+    public static function loadFromResource($resource){
         if (is_resource($resource)) {
             self::$lang = yaml_parse(stream_get_contents($resource));
         }
@@ -25,7 +25,7 @@ class Translation{
      * @return bool Returns TRUE on
      *              success.
      */
-    public static function save(string $filename) : bool{
+    public static function save(string $filename){
         $path = dirname($filename);
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
@@ -39,7 +39,7 @@ class Translation{
      *
      * @return string
      */
-    public static function translate(string $strId, string ...$params) : string{
+    public static function translate(string $strId, string ...$params){
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
             if (is_array($value)) {
@@ -59,7 +59,7 @@ class Translation{
      *
      * @return string[] | null
      */
-    public static function getArray(string $strId) : ?array{
+    public static function getArray(string $strId){
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
             return is_array($value) ? $value : null;

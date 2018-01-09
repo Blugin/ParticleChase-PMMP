@@ -19,7 +19,7 @@ class SaveSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args) : bool{
+    public function onCommand(CommandSender $sender, array $args){
         $this->owner->save();
         $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success')));
 

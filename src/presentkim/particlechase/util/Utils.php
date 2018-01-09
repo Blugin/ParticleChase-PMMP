@@ -8,7 +8,7 @@ namespace presentkim\particlechase\util;
  *
  * @return bool
  */
-function in_arrayi(string $str, array $strs) : bool{
+function in_arrayi(string $str, array $strs){
     foreach ($strs as $key => $value) {
         if (strcasecmp($str, $value) === 0) {
             return true;
@@ -22,7 +22,7 @@ function in_arrayi(string $str, array $strs) : bool{
  *
  * @return string[]
  */
-function listToPairs(array $list) : array{
+function listToPairs(array $list){
     $pairs = [];
     $size = sizeOf($list);
     for ($i = 0; $i < $size; ++$i) {
@@ -39,7 +39,7 @@ function listToPairs(array $list) : array{
  *
  * @return int|null
  */
-function toInt(string $str, int $default = null, \Closure $filter = null) : ? int{
+function toInt(string $str, int $default = null, \Closure $filter = null){
     if (is_numeric($str)) {
         $i = (int) $str;
     } elseif (is_numeric($default)) {
@@ -60,7 +60,7 @@ function toInt(string $str, int $default = null, \Closure $filter = null) : ? in
  * @param string $extensionName
  * @param null   $extensionFileName
  */
-function extensionLoad(string $extensionName, $extensionFileName = null) : void{
+function extensionLoad(string $extensionName, $extensionFileName = null){
     if (!extension_loaded($extensionName)) {
         /** @noinspection PhpDeprecationInspection */
         dl($extensionFileName ?? (PHP_SHLIB_SUFFIX === 'dll' ? 'php_' : '') . "$extensionName." . PHP_SHLIB_SUFFIX);

@@ -38,11 +38,11 @@ class ParticleChaseMain extends PluginBase{
     private $taskHandler = null;
 
     /** @return self */
-    public static function getInstance() : self{
+    public static function getInstance(){
         return self::$instance;
     }
 
-    public function onLoad() : void{
+    public function onLoad(){
         if (self::$instance === null) {
             // register instance
             self::$instance = $this;
@@ -63,7 +63,7 @@ class ParticleChaseMain extends PluginBase{
     /**
      *
      */
-    public function onEnable() : void{
+    public function onEnable(){
         $this->load();
 
         // start repeating task
@@ -96,7 +96,7 @@ class ParticleChaseMain extends PluginBase{
              *
              * @return GenericParticle|null
              */
-            private function getParticle(Vector3 $vec, string $name, string $data = '') : ?GenericParticle{
+            private function getParticle(Vector3 $vec, string $name, string $data = ''){
                 if (strcasecmp($name, "VILLAGER_ANGRY") == 0) {
                     return new AngryVillagerParticle($vec);
                 } elseif (strcasecmp($name, "BLOCK_FORCE_FIELD") == 0) {
@@ -169,7 +169,7 @@ class ParticleChaseMain extends PluginBase{
         }, 2);
     }
 
-    public function onDisable() : void{
+    public function onDisable(){
         $this->save();
 
         // stop repeating task
@@ -181,11 +181,11 @@ class ParticleChaseMain extends PluginBase{
      *
      * @return \SQLite3Result
      */
-    public function query(string $query) : \SQLite3Result{
+    public function query(string $query){
         return $this->db->query($query);
     }
 
-    public function load() : void{
+    public function load(){
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
@@ -221,7 +221,7 @@ class ParticleChaseMain extends PluginBase{
         $this->registerCommand(new CommandListener($this), Translation::translate('command-particlechase'), 'ParticleChase', 'particlechase.cmd', Translation::translate('command-particlechase@description'), Translation::translate('command-particlechase@usage'), Translation::getArray('command-particlechase@aliases'));
     }
 
-    public function save() : void{
+    public function save(){
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
@@ -246,7 +246,7 @@ class ParticleChaseMain extends PluginBase{
      * @param null            $usageMessage
      * @param array|null      $aliases
      */
-    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null) : void{
+    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null){
         $command = new PluginCommand($name, $this);
         $command->setExecutor($executor);
         $command->setPermission($permission);

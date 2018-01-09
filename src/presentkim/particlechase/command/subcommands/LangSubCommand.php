@@ -19,7 +19,7 @@ class LangSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args) : bool{
+    public function onCommand(CommandSender $sender, array $args){
         if (isset($args[0]) && is_string($args[0]) && ($args[0] = strtolower(trim($args[0])))) {
             $resource = $this->owner->getResource("lang/$args[0].yml");
             if (is_resource($resource)) {

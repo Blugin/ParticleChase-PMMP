@@ -69,14 +69,14 @@ abstract class SubCommand{
      *
      * @return bool
      */
-    abstract public function onCommand(CommandSender $sender, array $args) : bool;
+    abstract public function onCommand(CommandSender $sender, array $args);
 
     /**
      * @param CommandSender $target
      *
      * @return bool
      */
-    public function checkPermission(CommandSender $target) : bool{
+    public function checkPermission(CommandSender $target){
         if ($this->permission === null) {
             return true;
         } else {
@@ -85,7 +85,7 @@ abstract class SubCommand{
     }
 
     /** @return string */
-    public function getUsage() : string{
+    public function getUsage(){
         return $this->usage;
     }
 
@@ -94,7 +94,7 @@ abstract class SubCommand{
      *
      * @return string
      */
-    public function getFullId(string $tag) : string{
+    public function getFullId(string $tag){
         return "$this->strId@$tag";
     }
 
@@ -103,7 +103,7 @@ abstract class SubCommand{
      *
      * @return bool
      */
-    public function checkLabel(string $label) : bool{
+    public function checkLabel(string $label){
         return strcasecmp($label, $this->label) === 0 || $this->aliases && in_arrayi($label, $this->aliases);
     }
 }

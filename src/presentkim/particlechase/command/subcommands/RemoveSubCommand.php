@@ -23,7 +23,7 @@ class RemoveSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args) : bool{
+    public function onCommand(CommandSender $sender, array $args){
         if (isset($args[0])) {
             $playerName = strtolower($args[0]);
             $result = $this->owner->query("SELECT particle_name FROM particle_chase_list WHERE player_name = \"$playerName\";")->fetchArray(SQLITE3_NUM)[0];
