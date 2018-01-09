@@ -56,7 +56,7 @@ class ParticleChaseMain extends PluginBase{
                 extensionLoad('sqlite3');
 
                 $db = new \SQLITE3($sqlite3Path);
-                $results = $db->query("SELECT * FROM player_scale_list;");
+                $results = $db->query("SELECT * FROM particle_chase_list;");
                 $config = $this->getConfig();
                 $playerData = [];
                 while ($result = $results->fetchArray(SQLITE3_NUM)) {
