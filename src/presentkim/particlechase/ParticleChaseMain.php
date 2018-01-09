@@ -49,15 +49,29 @@ class ParticleChaseMain extends PluginBase{
 
             // load utils
             $this->getServer()->getLoader()->loadClass('presentkim\particlechase\util\Utils');
-        }
 
-        // init data.sqlite3
-        extensionLoad('sqlite3');
-        $dataFolder = $this->getDataFolder();
-        if (!file_exists($dataFolder)) {
-            mkdir($dataFolder, 0777, true);
+            // Dispose of existing data
+            $sqlite3Path = "{$this->getDataFolder()}data.sqlite3";
+            if (file_exists($sqlite3Path)) {
+                extensionLoad('sqlite3');
+
+                $db = new \SQLITE3($sqlite3Path);
+                $results = $db->query("SELECT * FROM player_scale_list;");
+                $config = $this->getConfig();
+                $playerData = [];
+                while ($result = $results->fetchArray(SQLITE3_NUM)) {
+                    $key = mb_convert_encoding($result[0], "ASCII", "UTF-8");
+                    $value = [];
+                    $value [] = mb_convert_encoding($result[1], "ASCII", "UTF-8");
+                    $value [] = mb_convert_encoding($result[2], "ASCII", "UTF-8");
+                    $playerData[$key] = $value;
+                }
+                $config->set('playerData', $playerData);
+                $this->saveConfig();
+                unset($db, $results, $result);
+                unlink($sqlite3Path);
+            }
         }
-        $this->db = new \SQLITE3($dataFolder . 'data.sqlite3');
     }
 
     /**
