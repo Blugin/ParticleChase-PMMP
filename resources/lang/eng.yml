@@ -13,7 +13,7 @@ command-particlechase@description: "Main command of ParticleChase"
 command-particlechase@aliases: ["pc"]
 
 command-particlechase-set: "set"
-command-particlechase-set@usage: "/ParticleChase Set <player name> <particle name>"
+command-particlechase-set@usage: "/ParticleChase Set <player name> <particle name> [mode] [data]"
 command-particlechase-set@success: "{%0}'s particle was setted to {%1}"
 command-particlechase-set@failure-invalid-particle: "{%0} is invalid particle name"
 command-particlechase-set@aliases: ["s"]
