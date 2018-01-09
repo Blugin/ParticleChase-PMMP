@@ -190,15 +190,6 @@ class ParticleChaseMain extends PluginBase{
         $this->taskHandler->cancel();
     }
 
-    /**
-     * @param string $query
-     *
-     * @return \SQLite3Result
-     */
-    public function query(string $query){
-        return $this->db->query($query);
-    }
-
     public function load(){
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
@@ -206,15 +197,7 @@ class ParticleChaseMain extends PluginBase{
         }
 
         // load db
-        $this->query("
-            CREATE TABLE IF NOT EXISTS particle_chase_list (
-                player_name   TEXT NOT NULL,
-                particle_name TEXT NOT NULL,
-                particle_data TEXT NOT NULL,
-                PRIMARY KEY (player_name)
-            );
-            COMMIT;
-        ");
+        $this->reloadConfig();
 
         // load lang
         $langfilename = $dataFolder . 'lang.yml';
@@ -240,6 +223,9 @@ class ParticleChaseMain extends PluginBase{
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
         }
+        
+        // save db
+        $this->saveConfig();
 
         // save lang
         $langfilename = $dataFolder . 'lang.yml';
