@@ -3,6 +3,7 @@
 namespace presentkim\particlechase\command\subcommands;
 
 use pocketmine\command\CommandSender;
+use pocketmine\Server;
 use presentkim\particlechase\{
   ParticleChaseMain as Plugin, util\Translation, command\SubCommand
 };
@@ -22,10 +23,18 @@ class ListSubCommand extends SubCommand{
      */
     public function onCommand(CommandSender $sender, array $args){
         $list = [];
-        $results = $this->owner->query("SELECT * FROM particle_chase_list ORDER BY player_name ASC");
-        while ($row = $results->fetchArray(SQLITE3_NUM)) {
-            $list[] = $row;
+        foreach ($this->owner->getConfig()->getAll() as $key => $value) {
+            if (($player = Server::getInstance()->getPlayerExact($key)) !== null) {
+                $key = $player->getName();
+            }
+            $list[] = [
+              $key,
+              $value[0],
+              Translation::translate($value[1] == 1 ? 'modename@head' : 'modename@foot'),
+              $value[2],
+            ];
         }
+
         $max = ceil(sizeof($list) / 5);
         $page = min($max, (isset($args[0]) ? toInt($args[0], 1, function (int $i){
               return $i > 0 ? 1 : -1;
