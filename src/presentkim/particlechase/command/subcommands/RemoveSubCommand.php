@@ -26,12 +26,13 @@ class RemoveSubCommand extends SubCommand{
     public function onCommand(CommandSender $sender, array $args){
         if (isset($args[0])) {
             $playerName = strtolower($args[0]);
-            $result = $this->owner->query("SELECT particle_name FROM particle_chase_list WHERE player_name = \"$playerName\";")->fetchArray(SQLITE3_NUM)[0];
-            if ($result === null) {
-                $sender->sendMessage($this->prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
-            } else {
-                $this->owner->query("DELETE FROM particle_chase_list WHERE player_name = \"$playerName\"");
+
+            $config = $this->owner->getConfig();
+            if ($config->exists($playerName)) {
+                $config->remove($playerName);
                 $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $playerName));
+            } else {
+                $sender->sendMessage($this->prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
             }
             return true;
         }
