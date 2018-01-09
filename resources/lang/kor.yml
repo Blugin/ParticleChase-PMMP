@@ -11,31 +11,32 @@ command-particlechase@aliases: ["pc"]
 
 command-particlechase-set: "set"
 command-particlechase-set@usage: "/ParticleChase Set <플레이어명> <파티클명>"
-command-particlechase-set@success: "{%0}님의 파티클을 {%1}로 성공적으로 설정했습니다."
+command-particlechase-set@success: "{%0}님의 파티클이 {%1}로 설정되었습니다."
 command-particlechase-set@failure-invalid-particle: "{%0}는 잘못된 파티클명입니다."
 command-particlechase-set@aliases: ["s"]
+
 command-particlechase-remove: "remove"
 command-particlechase-remove@usage: "/ParticleChase Remove <플레이어명>"
-command-particlechase-remove@success: "{%0}님의 파티클을 {%1}로 성공적으로 제거했습니다."
+command-particlechase-remove@success: "{%0}님의 파티클이 제거되었습니다."
 command-particlechase-remove@aliases: ["r"]
 
 command-particlechase-list: "list"
 command-particlechase-list@usage: "/ParticleChase List <페이지>"
-command-particlechase-list@head: "--- 설정된 플레이어 목록 (page {%0} of {%1}) ---"
-command-particlechase-list@item: "    {%0} => {%1}"
+command-particlechase-list@head: "--- 목록 (page {%0} of {%1}) ---"
+command-particlechase-list@item: " - {%0} => {%2}"
 command-particlechase-list@aliases: ["l"]
 
 command-particlechase-lang: "lang"
-command-particlechase-lang@usage: "/ItemPopup Lang <언어명>"
-command-particlechase-lang@success: "{%0}언어 파일을 성공적으로 불러왔습니다."
-command-particlechase-lang@failure: "{%0}는 알 수 없는 언어명입니다."
+command-particlechase-lang@usage: "/ParticleChase Lang <언어명>"
+command-particlechase-lang@success: "{%0}언어 파일을 불러왔습니다."
+command-particlechase-lang@failure: "{%0}는 잘못된 언어명입니다."
 command-particlechase-lang@aliases: ["language"]
 
 command-particlechase-reload: "reload"
-command-particlechase-reload@success: "모든 데이터를 성공적으로 불러왔습니다."
+command-particlechase-reload@success: "모든 데이터를 불러왔습니다."
 command-particlechase-reload@aliases: ["rl"]
 
 command-particlechase-save: "save"
-command-particlechase-save@success: "모든 데이터를 성공적으로 저장했습니다."
+command-particlechase-save@success: "모든 데이터를 저장했습니다."
 command-particlechase-save@aliases: ["sv"]
 ...
