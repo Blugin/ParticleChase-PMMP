@@ -3,13 +3,9 @@
 namespace presentkim\particlechase\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use pocketmine\event\EventPriority;
-use pocketmine\Server;
 use presentkim\particlechase\{
   ParticleChaseMain as Plugin, util\Translation, command\SubCommand
 };
-use function presentkim\particlechase\util\toInt;
-use function strtolower;
 
 class RemoveSubCommand extends SubCommand{
 
