@@ -25,6 +25,9 @@ class ParticleChaseMain extends PluginBase{
     /** @var self */
     private static $instance = null;
 
+    /** @var string */
+    public static $prefix = '';
+
     /** @var PoolCommand */
     private $command;
 
@@ -177,6 +180,7 @@ class ParticleChaseMain extends PluginBase{
             Translation::load($langfilename);
         }
 
+        self::$prefix = Translation::translate('prefix');
         $this->reloadCommand();
     }
 
