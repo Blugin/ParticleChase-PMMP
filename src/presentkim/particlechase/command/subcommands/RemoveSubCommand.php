@@ -15,7 +15,7 @@ class RemoveSubCommand extends SubCommand{
 
     /**
      * @param CommandSender $sender
-     * @param array         $args
+     * @param String[]      $args
      *
      * @return bool
      */
@@ -26,9 +26,9 @@ class RemoveSubCommand extends SubCommand{
             $config = $this->owner->getConfig();
             if ($config->exists($playerName)) {
                 $config->remove($playerName);
-                $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $playerName));
+                $sender->sendMessage(Plugin::$prefix . $this->translate('success', $playerName));
             } else {
-                $sender->sendMessage($this->prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
+                $sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
             }
             return true;
         }

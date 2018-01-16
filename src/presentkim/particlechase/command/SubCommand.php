@@ -10,62 +10,58 @@ use function presentkim\particlechase\util\in_arrayi;
 
 abstract class SubCommand{
 
-    /** @var Plugin */
+    /** @var PoolCommand */
     protected $owner;
 
-    /** @var string */
-    protected $prefix;
+    /** @var Plugin */
+    protected $plugin;
 
     /** @var string */
     protected $strId;
 
     /** @var string */
+    protected $permission;
+
+    /** @var string */
     protected $label;
 
     /** @var string[] */
-    protected $aliases = [];
+    protected $aliases;
 
     /** @var string */
     protected $usage;
 
-    /** @var string|null */
-    protected $permission = null;
-
     /**
      * SubCommand constructor.
      *
-     * @param Plugin $owner
-     * @param string $prefix
-     * @param string $strId
-     * @param string $permission
+     * @param PoolCommand $owner
+     * @param string      $label
      */
-    public function __construct(Plugin $owner, string $prefix, string $strId, string $permission){
+    public function __construct(PoolCommand $owner, string $label){
         $this->owner = $owner;
-        $this->prefix = $prefix;
-        $this->strId = $strId;
+        $this->plugin = $owner->getPlugin();
 
-        $this->label = Translation::translate($this->strId);
-        $this->aliases = Translation::getArray($this->getFullId('aliases'));
-        $this->usage = Translation::translate($this->getFullId('usage'));
+        $this->strId = "command-{$owner->uname}-{$label}";
+        $this->permission = "{$owner->uname}.cmd.{$label}";
 
-        $this->permission = $permission;
+        $this->updateTranslation();
     }
 
     /**
      * @param CommandSender $sender
-     * @param array         $args
+     * @param String[]      $args
      */
     public function execute(CommandSender $sender, array $args){
-        if (!$sender->hasPermission("particlechase.$this->strId.cmd")) {
-            $sender->sendMessage($this->prefix . Translation::translate('command-generic-failure@permission'));
+        if (!$this->checkPermission($sender)) {
+            $sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@permission'));
         } elseif (!$this->onCommand($sender, $args)) {
-            $sender->sendMessage("$this->prefix$this->usage");
+            $sender->sendMessage(Plugin::$prefix . $this->usage);
         }
     }
 
     /**
      * @param CommandSender $sender
-     * @param array         $args
+     * @param String[]      $args
      *
      * @return bool
      */
@@ -84,18 +80,14 @@ abstract class SubCommand{
         }
     }
 
-    /** @return string */
-    public function getUsage(){
-        return $this->usage;
-    }
-
     /**
-     * @param string $tag
+     * @param string   $tag
+     * @param string[] $params
      *
      * @return string
      */
-    public function getFullId(string $tag){
-        return "$this->strId@$tag";
+    public function translate(string $tag, string ...$params){
+        return Translation::translate("{$this->strId}@{$tag}", ...$params);
     }
 
     /**
@@ -105,5 +97,11 @@ abstract class SubCommand{
      */
     public function checkLabel(string $label){
         return strcasecmp($label, $this->label) === 0 || $this->aliases && in_arrayi($label, $this->aliases);
+    }
+
+    public function updateTranslation(){
+        $this->label = Translation::translate($this->strId);
+        $this->aliases = Translation::getArray("{$this->strId}@aliases");
+        $this->usage = $this->translate('usage');
     }
 }
