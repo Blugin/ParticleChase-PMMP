@@ -9,22 +9,23 @@ permissions:
   particlechase.cmd:
     description:  ParticleChase main command
     default:      op
-  particlechase.set.cmd:
-    description:  ParticleChase set command
-    default:      op
-  particlechase.remove.cmd:
-    description:  ParticleChase remove command
-    default:      op
-  particlechase.list.cmd:
-    description:  ParticleChase list command
-    default:      op
-  particlechase.lang.cmd:
-    description:  ParticleChase lang command
-    default:      op
-  particlechase.reload.cmd:
-    description:  ParticleChase reload command
-    default:      op
-  particlechase.save.cmd:
-    description:  ParticleChase save command
-    default:      op
+    children:
+      particlechase.cmd.set:
+        description:  ParticleChase command - set
+        default:      op
+      particlechase.cmd.remove:
+        description:  ParticleChase command - remove
+        default:      op
+      particlechase.cmd.list:
+        description:  ParticleChase command - list
+        default:      op
+      particlechase.cmd.lang:
+        description:  ParticleChase command - lang
+        default:      op
+      particlechase.cmd.reload:
+        description:  ParticleChase command - reload
+        default:      op
+      particlechase.cmd.save:
+        description:  ParticleChase command - save
+        default:      op
 ...
