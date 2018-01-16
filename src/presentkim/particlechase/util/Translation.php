@@ -39,20 +39,6 @@ class Translation{
     }
 
     /**
-     * @param string $filename
-     *
-     * @return bool Returns TRUE on
-     *              success.
-     */
-    public static function save(string $filename){
-        $path = dirname($filename);
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
-        return yaml_emit_file($filename, self::$lang, YAML_UTF8_ENCODING);
-    }
-
-    /**
      * @param string   $strId
      * @param string[] $params
      *
