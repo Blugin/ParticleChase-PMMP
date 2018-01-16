@@ -22,10 +22,17 @@ class Translation{
         }
     }
 
-    /** @param resource $resource */
-    public static function loadFromResource($resource){
+    /**
+     * @param resource $resource
+     * @param bool     $default
+     */
+    public static function loadFromResource($resource, boolean $default = false){
         if (is_resource($resource)) {
-            self::$lang = yaml_parse(stream_get_contents($resource));
+            if ($default) {
+                self::$default = yaml_parse(stream_get_contents($resource));
+            } else {
+                self::$lang = yaml_parse(stream_get_contents($resource));
+            }
         }
     }
 
