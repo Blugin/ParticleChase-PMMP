@@ -16,7 +16,7 @@ class Translation{
      * @param string $filename
      * @param bool   $default
      */
-    public static function load(string $filename, boolean $default = false){
+    public static function load(string $filename, bool $default = false){
         if ($default) {
             self::$default = yaml_parse_file($filename);
         } else {
@@ -28,7 +28,7 @@ class Translation{
      * @param resource $resource
      * @param bool     $default
      */
-    public static function loadFromResource($resource, boolean $default = false){
+    public static function loadFromResource($resource, bool $default = false){
         if (is_resource($resource)) {
             if ($default) {
                 self::$default = yaml_parse(stream_get_contents($resource));
