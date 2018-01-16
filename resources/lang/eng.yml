@@ -8,38 +8,40 @@ command-generic-failure@permission : "You do not have permission to use this com
 command-generic-failure@invalid-player: "{%0} is invalid player name"
 
 command-particlechase: "particlechase"
-command-particlechase@usage: "/ParticleChase <set | remove | list | lang | reload | save>"
+command-particlechase@usage: "/particlechase <set | remove | list | lang | reload | save>"
 command-particlechase@description: "Main command of ParticleChase"
 command-particlechase@aliases: ["pc"]
 
 command-particlechase-set: "set"
-command-particlechase-set@usage: "/ParticleChase Set <player name> <particle name> [mode] [data]"
+command-particlechase-set@usage: "/particlechase Set <player name> <particle name> [mode] [data]"
 command-particlechase-set@success: "{%0}'s particle was setted to {%1}"
 command-particlechase-set@failure-invalid-particle: "{%0} is invalid particle name"
 command-particlechase-set@aliases: ["s"]
 
 command-particlechase-remove: "remove"
-command-particlechase-remove@usage: "/ParticleChase Remove <player name>"
+command-particlechase-remove@usage: "/particlechase Remove <player name>"
 command-particlechase-remove@success: "{%0}'s particle was removed"
 command-particlechase-remove@aliases: ["r"]
 
 command-particlechase-list: "list"
-command-particlechase-list@usage: "/ParticleChase List <Page>"
+command-particlechase-list@usage: "/particlechase List <Page>"
 command-particlechase-list@head: "--- List (page {%0} of {%1}) ---"
 command-particlechase-list@item: " - {%0} => {%1}({%2}) {%3}"
 command-particlechase-list@aliases: ["l"]
 
 command-particlechase-lang: "lang"
-command-particlechase-lang@usage: "/ParticleChase Lang <language prefix>"
+command-particlechase-lang@usage: "/particlechase Lang <language prefix>"
 command-particlechase-lang@success: "{%0} language file was loaded"
 command-particlechase-lang@failure: "{%0} is invalid language prefix"
 command-particlechase-lang@aliases: ["language"]
 
 command-particlechase-reload: "reload"
+command-particlechase-reload@usage: "/particlechase Reload"
 command-particlechase-reload@success: "All data was reloaded"
 command-particlechase-reload@aliases: ["rl"]
 
 command-particlechase-save: "save"
+command-particlechase-save@usage: "/particlechase Save"
 command-particlechase-save@success: "All data was saved"
 command-particlechase-save@aliases: ["sv"]
 ...
