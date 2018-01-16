@@ -27,7 +27,7 @@ class ParticleChaseMain extends PluginBase{
 
     /** @var self */
     private static $instance = null;
-    
+
     /** @var PluginCommand[] */
     private $commands = [];
 
@@ -41,16 +41,9 @@ class ParticleChaseMain extends PluginBase{
 
     public function onLoad(){
         if (self::$instance === null) {
-            // register instance
             self::$instance = $this;
-
-            // load utils
             $this->getServer()->getLoader()->loadClass('presentkim\particlechase\util\Utils');
 
-            // load default lang
-            Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
-
-            // Dispose of existing data
             $sqlite3Path = "{$this->getDataFolder()}data.sqlite3";
             if (file_exists($sqlite3Path)) {
                 extensionLoad('sqlite3');
@@ -70,16 +63,13 @@ class ParticleChaseMain extends PluginBase{
                 unset($db, $results, $result);
                 unlink($sqlite3Path);
             }
+            Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
         }
     }
 
-    /**
-     *
-     */
     public function onEnable(){
         $this->load();
 
-        // start repeating task
         $this->taskHandler = Server::getInstance()->getScheduler()->scheduleRepeatingTask(new class() extends Task{
 
             /** @var ParticleChaseMain */
@@ -189,8 +179,6 @@ class ParticleChaseMain extends PluginBase{
 
     public function onDisable(){
         $this->save();
-
-        // stop repeating task
         $this->taskHandler->cancel();
     }
 
@@ -200,10 +188,8 @@ class ParticleChaseMain extends PluginBase{
             mkdir($dataFolder, 0777, true);
         }
 
-        // load db
         $this->reloadConfig();
 
-        // load lang
         $langfilename = $dataFolder . 'lang.yml';
         if (!file_exists($langfilename)) {
             $resource = $this->getResource('lang/eng.yml');
@@ -214,13 +200,10 @@ class ParticleChaseMain extends PluginBase{
             Translation::load($langfilename);
         }
 
-        // unregister commands
         foreach ($this->commands as $command) {
             $this->getServer()->getCommandMap()->unregister($command);
         }
         $this->commands = [];
-
-        // register commands
         $this->registerCommand(new CommandListener($this), Translation::translate('command-particlechase'), 'ParticleChase', 'particlechase.cmd', Translation::translate('command-particlechase@description'), Translation::translate('command-particlechase@usage'), Translation::getArray('command-particlechase@aliases'));
     }
 
@@ -230,7 +213,6 @@ class ParticleChaseMain extends PluginBase{
             mkdir($dataFolder, 0777, true);
         }
 
-        // save db
         $this->saveConfig();
     }
 
