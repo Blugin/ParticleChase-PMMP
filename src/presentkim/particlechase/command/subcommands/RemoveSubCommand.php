@@ -23,7 +23,7 @@ class RemoveSubCommand extends SubCommand{
         if (isset($args[0])) {
             $playerName = strtolower($args[0]);
 
-            $config = $this->owner->getConfig();
+            $config = $this->plugin->getConfig();
             if ($config->exists($playerName)) {
                 $config->remove($playerName);
                 $sender->sendMessage(Plugin::$prefix . $this->translate('success', $playerName));

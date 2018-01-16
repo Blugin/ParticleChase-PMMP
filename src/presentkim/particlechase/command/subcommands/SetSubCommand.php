@@ -25,7 +25,7 @@ class SetSubCommand extends SubCommand{
         if (isset($args[1])) {
             $playerName = strtolower($args[0]);
 
-            $config = $this->owner->getConfig();
+            $config = $this->plugin->getConfig();
 
             $player = Server::getInstance()->getPlayerExact($playerName);
             $exists = $config->exists($playerName);
