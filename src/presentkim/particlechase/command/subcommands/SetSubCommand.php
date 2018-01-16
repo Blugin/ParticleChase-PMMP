@@ -6,13 +6,13 @@ use pocketmine\command\CommandSender;
 use pocketmine\level\particle\Particle;
 use pocketmine\Server;
 use presentkim\particlechase\{
-  ParticleChaseMain as Plugin, util\Translation, command\SubCommand
+  command\PoolCommand, ParticleChaseMain as Plugin, util\Translation, command\SubCommand
 };
 
 class SetSubCommand extends SubCommand{
 
-    public function __construct(Plugin $owner){
-        parent::__construct($owner, Translation::translate('prefix'), 'command-particlechase-set', 'particlechase.set.cmd');
+    public function __construct(PoolCommand $owner){
+        parent::__construct($owner, 'set');
     }
 
     /**
@@ -36,14 +36,14 @@ class SetSubCommand extends SubCommand{
                 $particleMode = $args[2] ?? 0;
                 $particleData = implode(' ', array_slice($args, 3));
                 if (!defined(Particle::class . "::TYPE_" . $particleName)) {
-                    $sender->sendMessage(Plugin::$prefix . $this->translate('failure-invalid-particle'), $args[1]));
+                    $sender->sendMessage(Plugin::$prefix . $this->translate('failure-invalid-particle', $args[1]));
                 } else {
                     $config->set($playerName, [
                       $particleName,
                       $particleMode,
                       $particleData,
                     ]);
-                    $sender->sendMessage(Plugin::$prefix . $this->translate('success'), $playerName, $particleName));
+                    $sender->sendMessage(Plugin::$prefix . $this->translate('success', $playerName, $particleName));
                 }
             }
             return true;

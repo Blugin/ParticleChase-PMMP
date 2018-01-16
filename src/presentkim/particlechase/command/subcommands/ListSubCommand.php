@@ -5,14 +5,14 @@ namespace presentkim\particlechase\command\subcommands;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
 use presentkim\particlechase\{
-  ParticleChaseMain as Plugin, util\Translation, command\SubCommand
+  command\PoolCommand, ParticleChaseMain as Plugin, util\Translation, command\SubCommand
 };
 use function presentkim\particlechase\util\toInt;
 
 class ListSubCommand extends SubCommand{
 
-    public function __construct(Plugin $owner){
-        parent::__construct($owner, Translation::translate('prefix'), 'command-particlechase-list', 'particlechase.list.cmd');
+    public function __construct(PoolCommand $owner){
+        parent::__construct($owner, 'remove');
     }
 
     /**
