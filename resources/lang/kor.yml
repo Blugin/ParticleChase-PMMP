@@ -4,8 +4,8 @@ prefix: "[ParticleChase] "
 modename@foot : "발밑"
 modename@head : "머리"
 
-command-generic-failure@permission : "당신은 이 명령어를 사용할 권한이 없습니다."
-command-generic-failure@invalid-player: "{%0}는 잘못된 플레이어명입니다."
+command-generic-failure@permission : "당신은 이 명령어를 사용할 권한이 없습니다"
+command-generic-failure@invalid-player: "{%0}는 잘못된 플레이어명입니다"
 
 command-particlechase: "particlechase"
 command-particlechase@usage: "/particlechase <set | remove | list | lang | reload | save>"
@@ -14,13 +14,13 @@ command-particlechase@aliases: ["pc"]
 
 command-particlechase-set: "set"
 command-particlechase-set@usage: "/particlechase Set <플레이어명> <파티클명> [모드] [데이터]"
-command-particlechase-set@success: "{%0}님의 파티클이 {%1}로 설정되었습니다."
-command-particlechase-set@failure-invalid-particle: "{%0}는 잘못된 파티클명입니다."
+command-particlechase-set@success: "{%0}님의 파티클이 {%1}로 설정되었습니다"
+command-particlechase-set@failure-invalid-particle: "{%0}는 잘못된 파티클명입니다"
 command-particlechase-set@aliases: ["s"]
 
 command-particlechase-remove: "remove"
 command-particlechase-remove@usage: "/particlechase Remove <플레이어명>"
-command-particlechase-remove@success: "{%0}님의 파티클이 제거되었습니다."
+command-particlechase-remove@success: "{%0}님의 파티클이 제거되었습니다"
 command-particlechase-remove@aliases: ["r"]
 
 command-particlechase-list: "list"
@@ -31,17 +31,17 @@ command-particlechase-list@aliases: ["l"]
 
 command-particlechase-lang: "lang"
 command-particlechase-lang@usage: "/particlechase Lang <언어명>"
-command-particlechase-lang@success: "{%0}언어 파일을 불러왔습니다."
-command-particlechase-lang@failure: "{%0}는 잘못된 언어명입니다."
+command-particlechase-lang@success: "{%0}언어 파일을 불러왔습니다"
+command-particlechase-lang@failure: "{%0}는 잘못된 언어명입니다"
 command-particlechase-lang@aliases: ["language"]
 
 command-particlechase-reload: "reload"
 command-particlechase-reload@usage: "/particlechase Reload"
-command-particlechase-reload@success: "모든 데이터를 불러왔습니다."
+command-particlechase-reload@success: "모든 데이터를 불러왔습니다"
 command-particlechase-reload@aliases: ["rl"]
 
 command-particlechase-save: "save"
 command-particlechase-save@usage: "/particlechase Save"
-command-particlechase-save@success: "모든 데이터를 저장했습니다."
+command-particlechase-save@success: "모든 데이터를 저장했습니다"
 command-particlechase-save@aliases: ["sv"]
 ...
