@@ -25,17 +25,23 @@ class Translation{
     }
 
     /**
+     * @param string $contents
+     * @param bool   $default
+     */
+    public static function loadFromContents(string $contents, bool $default = false){
+        if ($default) {
+            self::$default = yaml_parse($contents);
+        } else {
+            self::$lang = yaml_parse($contents);
+        }
+    }
+
+    /**
      * @param resource $resource
      * @param bool     $default
      */
     public static function loadFromResource($resource, bool $default = false){
-        if (is_resource($resource)) {
-            if ($default) {
-                self::$default = yaml_parse(stream_get_contents($resource));
-            } else {
-                self::$lang = yaml_parse(stream_get_contents($resource));
-            }
-        }
+        self::loadFromContents(stream_get_contents($resource), $default);
     }
 
     /**
