@@ -28,8 +28,9 @@ class LangSubCommand extends SubCommand{
                     mkdir($dataFolder, 0777, true);
                 }
 
+                stream_copy_to_stream($resource, $fp = fopen("{$dataFolder}lang.yml", "wb"));
+                fclose($fp);
                 Translation::loadFromResource($resource);
-                Translation::save("{$dataFolder}lang.yml");
 
                 $sender->sendMessage($this->prefix . Translation::translate($this->getFullId('success'), $args[0]));
             } else {
