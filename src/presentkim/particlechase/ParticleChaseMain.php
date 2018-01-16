@@ -2,22 +2,21 @@
 
 namespace presentkim\particlechase;
 
-use pocketmine\block\BlockFactory;
-use pocketmine\command\{
-  CommandExecutor, PluginCommand
-};
-use pocketmine\item\Item;
-use pocketmine\level\particle\{
-  AngryVillagerParticle, BlockForceFieldParticle, BubbleParticle, CriticalParticle, DustParticle, EnchantmentTableParticle, EnchantParticle, EntityFlameParticle, ExplodeParticle, FlameParticle, GenericParticle, HappyVillagerParticle, HeartParticle, HugeExplodeParticle, HugeExplodeSeedParticle, InkParticle, InstantEnchantParticle, ItemBreakParticle, LavaDripParticle, PortalParticle, RainSplashParticle, RedstoneParticle, SmokeParticle, SplashParticle, SporeParticle, TerrainParticle, WaterDripParticle, WaterParticle
-};
-use pocketmine\math\Vector3;
+use pocketmine\Server;
 use pocketmine\plugin\PluginBase;
+use pocketmine\item\Item;
+use pocketmine\block\BlockFactory;
+use pocketmine\math\Vector3;
 use pocketmine\scheduler\{
   Task, TaskHandler
 };
-use pocketmine\Server;
-use presentkim\particlechase\{
-  command\CommandListener, util\Translation
+use pocketmine\level\particle\{
+  AngryVillagerParticle, BlockForceFieldParticle, BubbleParticle, CriticalParticle, DustParticle, EnchantmentTableParticle, EnchantParticle, EntityFlameParticle, ExplodeParticle, FlameParticle, GenericParticle, HappyVillagerParticle, HeartParticle, HugeExplodeParticle, HugeExplodeSeedParticle, InkParticle, InstantEnchantParticle, ItemBreakParticle, LavaDripParticle, PortalParticle, RainSplashParticle, RedstoneParticle, SmokeParticle, SplashParticle, SporeParticle, TerrainParticle, WaterDripParticle, WaterParticle
+};
+use presentkim\particlechase\util\Translation;
+use presentkim\particlechase\command\PoolCommand;
+use presentkim\particlechase\command\subcommands\{
+  SetSubCommand, RemoveSubCommand, ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
 };
 use function presentkim\particlechase\util\toInt;
 
@@ -26,8 +25,8 @@ class ParticleChaseMain extends PluginBase{
     /** @var self */
     private static $instance = null;
 
-    /** @var PluginCommand[] */
-    private $commands = [];
+    /** @var PoolCommand */
+    private $command;
 
     /** @var TaskHandler */
     private $taskHandler = null;
@@ -178,11 +177,7 @@ class ParticleChaseMain extends PluginBase{
             Translation::load($langfilename);
         }
 
-        foreach ($this->commands as $command) {
-            $this->getServer()->getCommandMap()->unregister($command);
-        }
-        $this->commands = [];
-        $this->registerCommand(new CommandListener($this), Translation::translate('command-particlechase'), 'ParticleChase', 'particlechase.cmd', Translation::translate('command-particlechase@description'), Translation::translate('command-particlechase@usage'), Translation::getArray('command-particlechase@aliases'));
+        $this->reloadCommand();
     }
 
     public function save(){
@@ -194,27 +189,21 @@ class ParticleChaseMain extends PluginBase{
         $this->saveConfig();
     }
 
-    /**
-     * @param CommandExecutor $executor
-     * @param                 $name
-     * @param                 $fallback
-     * @param                 $permission
-     * @param string          $description
-     * @param null            $usageMessage
-     * @param array|null      $aliases
-     */
-    private function registerCommand(CommandExecutor $executor, $name, $fallback, $permission, $description = "", $usageMessage = null, array $aliases = null){
-        $command = new PluginCommand($name, $this);
-        $command->setExecutor($executor);
-        $command->setPermission($permission);
-        $command->setDescription($description);
-        $command->setUsage($usageMessage ?? ('/' . $name));
-        if (is_array($aliases)) {
-            $command->setAliases($aliases);
+    public function reloadCommand(){
+        if ($this->command == null) {
+            $this->command = new PoolCommand($this, 'particlechase');
+            $this->command->createSubCommand(SetSubCommand::class);
+            $this->command->createSubCommand(RemoveSubCommand::class);
+            $this->command->createSubCommand(ListSubCommand::class);
+            $this->command->createSubCommand(LangSubCommand::class);
+            $this->command->createSubCommand(ReloadSubCommand::class);
+            $this->command->createSubCommand(SaveSubCommand::class);
         }
-
-        $this->getServer()->getCommandMap()->register($fallback, $command);
-        $this->commands[] = $command;
+        $this->command->updateTranslation();
+        $this->command->updateSudCommandTranslation();
+        if ($this->command->isRegistered()) {
+            $this->getServer()->getCommandMap()->unregister($this->command);
+        }
+        $this->getServer()->getCommandMap()->register(strtolower($this->getName()), $this->command);
     }
-
 }
