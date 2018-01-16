@@ -7,6 +7,9 @@ class Translation{
     /** @var string[string] */
     private static $lang = [];
 
+    /** @var string[string] */
+    private static $default = [];
+
     /** @param string $filename */
     public static function load(string $filename){
         self::$lang = yaml_parse_file($filename);
