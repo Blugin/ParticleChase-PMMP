@@ -48,10 +48,10 @@ class Translation{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
         } elseif (isset(self::$default[$strId])) {
-            Plugin::getInstance()->getLogger()->warning("get $strId from default");
+            Plugin::getInstance()->getLogger()->debug("get $strId from default");
             $value = self::$default[$strId];
         } else {
-            Plugin::getInstance()->getLogger()->warning("get $strId failed");
+            Plugin::getInstance()->getLogger()->critical("get $strId failed");
             return "Undefined strId : $strId";
         }
 
@@ -74,10 +74,10 @@ class Translation{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
         } elseif (isset(self::$default[$strId])) {
-            Plugin::getInstance()->getLogger()->warning("get $strId from default");
+            Plugin::getInstance()->getLogger()->debug("get $strId from default");
             $value = self::$default[$strId];
         } else {
-            Plugin::getInstance()->getLogger()->warning("get $strId failed");
+            Plugin::getInstance()->getLogger()->critical("get $strId failed");
             return null;
         }
         return is_array($value) ? $value : null;
