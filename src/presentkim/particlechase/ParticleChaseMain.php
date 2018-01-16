@@ -47,6 +47,9 @@ class ParticleChaseMain extends PluginBase{
             // load utils
             $this->getServer()->getLoader()->loadClass('presentkim\particlechase\util\Utils');
 
+            // load default lang
+            Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
+
             // Dispose of existing data
             $sqlite3Path = "{$this->getDataFolder()}data.sqlite3";
             if (file_exists($sqlite3Path)) {
