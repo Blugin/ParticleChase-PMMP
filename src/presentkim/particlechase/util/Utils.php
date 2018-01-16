@@ -55,14 +55,3 @@ function toInt(string $str, int $default = null, \Closure $filter = null){
         return null;
     }
 }
-
-/**
- * @param string $extensionName
- * @param null   $extensionFileName
- */
-function extensionLoad(string $extensionName, $extensionFileName = null){
-    if (!extension_loaded($extensionName)) {
-        /** @noinspection PhpDeprecationInspection */
-        dl($extensionFileName ?? (PHP_SHLIB_SUFFIX === 'dll' ? 'php_' : '') . "$extensionName." . PHP_SHLIB_SUFFIX);
-    }
-}
