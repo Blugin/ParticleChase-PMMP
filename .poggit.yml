@@ -1,0 +1,7 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/PMMPPlugin/ParticleChase
+branches:
+- master
+projects:
+  ParticleChase:
+    path: ""
+...
