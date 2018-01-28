@@ -28,16 +28,16 @@ class ParticleChaseMain extends PluginBase{
     /** @var string */
     public static $prefix = '';
 
+    /** @return self */
+    public static function getInstance(){
+        return self::$instance;
+    }
+
     /** @var PoolCommand */
     private $command;
 
     /** @var TaskHandler */
     private $taskHandler = null;
-
-    /** @return self */
-    public static function getInstance(){
-        return self::$instance;
-    }
 
     public function onLoad(){
         if (self::$instance === null) {
