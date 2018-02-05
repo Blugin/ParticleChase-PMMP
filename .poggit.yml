@@ -4,4 +4,5 @@ branches:
 projects:
   ParticleChase:
     path: ""
+    icon: meta/icon/192x192.png
 ...
