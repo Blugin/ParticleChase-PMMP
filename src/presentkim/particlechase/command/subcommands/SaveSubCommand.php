@@ -3,8 +3,9 @@
 namespace presentkim\particlechase\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\particlechase\{
-  command\PoolCommand, ParticleChaseMain as Plugin, command\SubCommand
+use presentkim\particlechase\ParticleChaseMain as Plugin;
+use presentkim\particlechase\command\{
+  PoolCommand, SubCommand
 };
 
 class SaveSubCommand extends SubCommand{

@@ -2,12 +2,14 @@
 
 namespace presentkim\particlechase\command\subcommands;
 
+use pocketmine\Server;
 use pocketmine\command\CommandSender;
 use pocketmine\level\particle\Particle;
-use pocketmine\Server;
-use presentkim\particlechase\{
-  command\PoolCommand, ParticleChaseMain as Plugin, util\Translation, command\SubCommand
+use presentkim\particlechase\ParticleChaseMain as Plugin;
+use presentkim\particlechase\command\{
+  PoolCommand, SubCommand
 };
+use presentkim\particlechase\util\Translation;
 
 class SetSubCommand extends SubCommand{
 

@@ -4,8 +4,12 @@ namespace presentkim\particlechase\command\subcommands;
 
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
-use presentkim\particlechase\{
-  command\PoolCommand, ParticleChaseMain as Plugin, util\Translation, command\SubCommand, util\Utils
+use presentkim\particlechase\ParticleChaseMain as Plugin;
+use presentkim\particlechase\command\{
+  PoolCommand, SubCommand
+};
+use presentkim\particlechase\util\{
+  Translation, Utils
 };
 
 class ListSubCommand extends SubCommand{

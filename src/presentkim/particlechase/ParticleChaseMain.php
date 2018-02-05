@@ -3,22 +3,23 @@
 namespace presentkim\particlechase;
 
 use pocketmine\Server;
-use pocketmine\plugin\PluginBase;
-use pocketmine\item\Item;
 use pocketmine\block\BlockFactory;
-use pocketmine\math\Vector3;
-use pocketmine\scheduler\{
-  Task, TaskHandler
-};
+use pocketmine\item\Item;
 use pocketmine\level\particle\{
   AngryVillagerParticle, BlockForceFieldParticle, BubbleParticle, CriticalParticle, DustParticle, EnchantmentTableParticle, EnchantParticle, EntityFlameParticle, ExplodeParticle, FlameParticle, GenericParticle, HappyVillagerParticle, HeartParticle, HugeExplodeParticle, HugeExplodeSeedParticle, InkParticle, InstantEnchantParticle, ItemBreakParticle, LavaDripParticle, PortalParticle, RainSplashParticle, RedstoneParticle, SmokeParticle, SplashParticle, SporeParticle, TerrainParticle, WaterDripParticle, WaterParticle
 };
-use presentkim\particlechase\util\Translation;
+use pocketmine\math\Vector3;
+use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\{
+  Task, TaskHandler
+};
 use presentkim\particlechase\command\PoolCommand;
 use presentkim\particlechase\command\subcommands\{
   SetSubCommand, RemoveSubCommand, ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
 };
-use presentkim\particlechase\util\Utils;
+use presentkim\particlechase\util\{
+  Translation, Utils
+};
 
 class ParticleChaseMain extends PluginBase{
 

@@ -3,9 +3,11 @@
 namespace presentkim\particlechase\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\particlechase\{
-  command\PoolCommand, ParticleChaseMain as Plugin, util\Translation, command\SubCommand
+use presentkim\particlechase\ParticleChaseMain as Plugin;
+use presentkim\particlechase\command\{
+  PoolCommand, SubCommand
 };
+use presentkim\particlechase\util\Translation;
 
 class LangSubCommand extends SubCommand{
 
@@ -32,7 +34,7 @@ class LangSubCommand extends SubCommand{
                 fclose($fp);
                 Translation::loadFromContents($contents);
                 $this->plugin->reloadCommand();
-                
+
                 $sender->sendMessage(Plugin::$prefix . $this->translate('success', $args[0]));
             } else {
                 $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $args[0]));
