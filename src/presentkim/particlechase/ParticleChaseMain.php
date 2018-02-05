@@ -18,7 +18,7 @@ use presentkim\particlechase\command\PoolCommand;
 use presentkim\particlechase\command\subcommands\{
   SetSubCommand, RemoveSubCommand, ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
 };
-use function presentkim\particlechase\util\toInt;
+use presentkim\particlechase\util\Utils;
 
 class ParticleChaseMain extends PluginBase{
 
@@ -42,7 +42,6 @@ class ParticleChaseMain extends PluginBase{
     public function onLoad() : void{
         if (self::$instance === null) {
             self::$instance = $this;
-            $this->getServer()->getLoader()->loadClass('presentkim\particlechase\util\Utils');
             Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
         }
     }
@@ -88,17 +87,17 @@ class ParticleChaseMain extends PluginBase{
                 if (strcasecmp($name, "VILLAGER_ANGRY") == 0) {
                     return new AngryVillagerParticle($vec);
                 } elseif (strcasecmp($name, "BLOCK_FORCE_FIELD") == 0) {
-                    return new BlockForceFieldParticle($vec, toInt($data, 0));
+                    return new BlockForceFieldParticle($vec, Utils::toInt($data, 0));
                 } elseif (strcasecmp($name, "BUBBLE") == 0) {
                     return new BubbleParticle($vec);
                 } elseif (strcasecmp($name, "CRITICAL") == 0) {
-                    return new CriticalParticle($vec, toInt($data, 2));
+                    return new CriticalParticle($vec, Utils::toInt($data, 2));
                 } elseif (strcasecmp($name, "DUST") == 0) {
                     $datas = explode(' ', $data);
-                    $r = isset($datas[0]) ? toInt($datas[0], 0) : 0;
-                    $g = isset($datas[1]) ? toInt($datas[1], 0) : 0;
-                    $b = isset($datas[2]) ? toInt($datas[2], 0) : 0;
-                    $a = isset($datas[2]) ? toInt($datas[2], 255) : 255;
+                    $r = isset($datas[0]) ? Utils::toInt($datas[0], 0) : 0;
+                    $g = isset($datas[1]) ? Utils::toInt($datas[1], 0) : 0;
+                    $b = isset($datas[2]) ? Utils::toInt($datas[2], 0) : 0;
+                    $a = isset($datas[2]) ? Utils::toInt($datas[2], 255) : 255;
                     return new DustParticle($vec, $r, $g, $b, $a);
                 } elseif (strcasecmp($name, "ENCHANTMENT_TABLE") == 0) {
                     return new EnchantmentTableParticle($vec);
@@ -113,19 +112,19 @@ class ParticleChaseMain extends PluginBase{
                 } elseif (strcasecmp($name, "VILLAGER_HAPPY") == 0) {
                     return new HappyVillagerParticle($vec);
                 } elseif (strcasecmp($name, "HEART") == 0) {
-                    return new HeartParticle($vec, toInt($data, 0));
+                    return new HeartParticle($vec, Utils::toInt($data, 0));
                 } elseif (strcasecmp($name, "HUGE_EXPLODE") == 0) {
                     return new HugeExplodeParticle($vec);
                 } elseif (strcasecmp($name, "HUGE_EXPLODE_SEED") == 0) {
                     return new HugeExplodeSeedParticle($vec);
                 } elseif (strcasecmp($name, "INK") == 0) {
-                    return new InkParticle($vec, toInt($data, 0));
+                    return new InkParticle($vec, Utils::toInt($data, 0));
                 } elseif (strcasecmp($name, "MOB_SPELL_INSTANTANEOUS") == 0) {
                     return new InstantEnchantParticle($vec);
                 } elseif (strcasecmp($name, "ITEM_BREAK") == 0) {
                     $datas = explode(' ', $data);
-                    $id = isset($datas[0]) ? (toInt($datas[0], 1)) : 1;
-                    $meta = isset($datas[1]) ? (toInt($datas[1], 0)) : 0;
+                    $id = isset($datas[0]) ? (Utils::toInt($datas[0], 1)) : 1;
+                    $meta = isset($datas[1]) ? (Utils::toInt($datas[1], 0)) : 0;
                     return new ItemBreakParticle($vec, Item::get($id, $meta));
                 } elseif (strcasecmp($name, "DRIP_LAVA") == 0) {
                     return new LavaDripParticle($vec);
@@ -134,17 +133,17 @@ class ParticleChaseMain extends PluginBase{
                 } elseif (strcasecmp($name, "RAIN_SPLASH") == 0) {
                     return new RainSplashParticle($vec);
                 } elseif (strcasecmp($name, "REDSTONE") == 0) {
-                    return new RedstoneParticle($vec, toInt($data, 1));
+                    return new RedstoneParticle($vec, Utils::toInt($data, 1));
                 } elseif (strcasecmp($name, "SMOKE") == 0) {
-                    return new SmokeParticle($vec, toInt($data, 0));
+                    return new SmokeParticle($vec, Utils::toInt($data, 0));
                 } elseif (strcasecmp($name, "WATER_SPLASH") == 0) {
                     return new SplashParticle($vec);
                 } elseif (strcasecmp($name, "TOWN_AURA") == 0) {
                     return new SporeParticle($vec);
                 } elseif (strcasecmp($name, "TERRAIN") == 0) {
                     $datas = explode(' ', $data);
-                    $id = isset($datas[0]) ? (toInt($datas[0], 1)) : 1;
-                    $meta = isset($datas[1]) ? (toInt($datas[1], 0)) : 0;
+                    $id = isset($datas[0]) ? (Utils::toInt($datas[0], 1)) : 1;
+                    $meta = isset($datas[1]) ? (Utils::toInt($datas[1], 0)) : 0;
                     return new TerrainParticle($vec, BlockFactory::get($id, $meta));
                 } elseif (strcasecmp($name, "DRIP_WATER") == 0) {
                     return new WaterDripParticle($vec);

@@ -65,7 +65,7 @@ class Translation{
             $value = $value[array_rand($value)];
         }
         if (is_string($value)) {
-            return empty($params) ? $value : strtr($value, listToPairs($params));
+            return empty($params) ? $value : strtr($value, Utils::listToPairs($params));
         } else {
             return "$strId is not string";
         }
