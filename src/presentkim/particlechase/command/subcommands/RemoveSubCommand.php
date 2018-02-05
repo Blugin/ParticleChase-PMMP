@@ -19,7 +19,7 @@ class RemoveSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args){
+    public function onCommand(CommandSender $sender, array $args) : bool{
         if (isset($args[0])) {
             $playerName = strtolower($args[0]);
 

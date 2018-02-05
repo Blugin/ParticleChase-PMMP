@@ -21,7 +21,7 @@ class ListSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args){
+    public function onCommand(CommandSender $sender, array $args) : bool{
         $list = [];
         foreach ($this->plugin->getConfig()->getAll() as $key => $value) {
             if (($player = Server::getInstance()->getPlayerExact($key)) !== null) {

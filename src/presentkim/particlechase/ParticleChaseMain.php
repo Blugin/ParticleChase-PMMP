@@ -29,7 +29,7 @@ class ParticleChaseMain extends PluginBase{
     public static $prefix = '';
 
     /** @return self */
-    public static function getInstance(){
+    public static function getInstance() : self{
         return self::$instance;
     }
 
@@ -39,7 +39,7 @@ class ParticleChaseMain extends PluginBase{
     /** @var TaskHandler */
     private $taskHandler = null;
 
-    public function onLoad(){
+    public function onLoad() : void{
         if (self::$instance === null) {
             self::$instance = $this;
             $this->getServer()->getLoader()->loadClass('presentkim\particlechase\util\Utils');
@@ -47,7 +47,7 @@ class ParticleChaseMain extends PluginBase{
         }
     }
 
-    public function onEnable(){
+    public function onEnable() : void{
         $this->load();
 
         $this->taskHandler = Server::getInstance()->getScheduler()->scheduleRepeatingTask(new class() extends Task{
@@ -162,7 +162,7 @@ class ParticleChaseMain extends PluginBase{
         $this->taskHandler->cancel();
     }
 
-    public function load(){
+    public function load() : void{
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
@@ -184,7 +184,7 @@ class ParticleChaseMain extends PluginBase{
         $this->reloadCommand();
     }
 
-    public function save(){
+    public function save() : void{
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
@@ -193,7 +193,7 @@ class ParticleChaseMain extends PluginBase{
         $this->saveConfig();
     }
 
-    public function reloadCommand(){
+    public function reloadCommand() : void{
         if ($this->command == null) {
             $this->command = new PoolCommand($this, 'particlechase');
             $this->command->createSubCommand(SetSubCommand::class);

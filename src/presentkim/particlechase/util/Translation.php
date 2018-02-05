@@ -16,7 +16,7 @@ class Translation{
      * @param string $filename
      * @param bool   $default
      */
-    public static function load(string $filename, bool $default = false){
+    public static function load(string $filename, bool $default = false) : void{
         if ($default) {
             self::$default = yaml_parse_file($filename);
         } else {
@@ -28,7 +28,7 @@ class Translation{
      * @param string $contents
      * @param bool   $default
      */
-    public static function loadFromContents(string $contents, bool $default = false){
+    public static function loadFromContents(string $contents, bool $default = false) : void{
         if ($default) {
             self::$default = yaml_parse($contents);
         } else {
@@ -40,7 +40,7 @@ class Translation{
      * @param resource $resource
      * @param bool     $default
      */
-    public static function loadFromResource($resource, bool $default = false){
+    public static function loadFromResource($resource, bool $default = false) : void{
         self::loadFromContents(stream_get_contents($resource), $default);
     }
 
@@ -50,7 +50,7 @@ class Translation{
      *
      * @return string
      */
-    public static function translate(string $strId, string ...$params){
+    public static function translate(string $strId, string ...$params) : string{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
         } elseif (isset(self::$default[$strId])) {
@@ -76,7 +76,7 @@ class Translation{
      *
      * @return string[] | null
      */
-    public static function getArray(string $strId){
+    public static function getArray(string $strId) : ?array{
         if (isset(self::$lang[$strId])) {
             $value = self::$lang[$strId];
         } elseif (isset(self::$default[$strId])) {

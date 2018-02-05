@@ -19,7 +19,7 @@ class ReloadSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args){
+    public function onCommand(CommandSender $sender, array $args) : bool{
         $this->plugin->load();
         $sender->sendMessage(Plugin::$prefix . $this->translate('success'));
 
