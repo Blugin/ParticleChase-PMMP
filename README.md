@@ -8,7 +8,7 @@
 [![Download](https://img.shields.io/github/downloads/PMMPPlugin/ParticleChase/total.svg?label=Download)](https://github.com/PMMPPlugin/ParticleChase/releases/latest)
 
 
-A plugin show custom item popup for PocketMine-MP
+A plugin set particle fallow player for PocketMine-MP
 
 ## Command
 Main command : `/particlechase <set | remove | list | lang | reload | save>`
