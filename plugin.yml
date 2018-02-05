@@ -4,6 +4,8 @@ main:             presentkim\particlechase\ParticleChase
 version:          1.2.0
 api:              [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11]
 author:           PresentKim
+website:          https://github.com/PMMPPlugin/ParticleChase
+description:      A plugin set particle fallow player
 
 permissions:
   particlechase.cmd:
