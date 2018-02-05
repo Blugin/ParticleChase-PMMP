@@ -2,7 +2,7 @@
 
 namespace presentkim\particlechase\util;
 
-use presentkim\particlechase\ParticleChaseMain as Plugin;
+use presentkim\particlechase\ParticleChase as Plugin;
 
 class Translation{
 

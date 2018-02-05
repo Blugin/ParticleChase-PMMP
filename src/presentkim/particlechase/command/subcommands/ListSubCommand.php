@@ -4,7 +4,7 @@ namespace presentkim\particlechase\command\subcommands;
 
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
-use presentkim\particlechase\ParticleChaseMain as Plugin;
+use presentkim\particlechase\ParticleChase as Plugin;
 use presentkim\particlechase\command\{
   PoolCommand, SubCommand
 };

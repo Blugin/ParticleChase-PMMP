@@ -21,7 +21,7 @@ use presentkim\particlechase\util\{
   Translation, Utils
 };
 
-class ParticleChaseMain extends PluginBase{
+class ParticleChase extends PluginBase{
 
     /** @var self */
     private static $instance = null;
@@ -52,11 +52,11 @@ class ParticleChaseMain extends PluginBase{
 
         $this->taskHandler = Server::getInstance()->getScheduler()->scheduleRepeatingTask(new class() extends Task{
 
-            /** @var ParticleChaseMain */
+            /** @var ParticleChase */
             private $owner;
 
             public function __construct(){
-                $this->owner = ParticleChaseMain::getInstance();
+                $this->owner = ParticleChase::getInstance();
             }
 
             public function onRun(int $currentTick){
