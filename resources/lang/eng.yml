@@ -8,7 +8,8 @@ command-generic-failure@permission : "You do not have permission to use this com
 command-generic-failure@invalid-player: "{%0} is invalid player name"
 
 command-particlechase: "particlechase"
-command-particlechase@usage: "/particlechase <set | remove | list | lang | reload | save>"
+command-particlechase@usage: "/particlechase <{%0}>"
+command-particlechase@usage-separator: " | "
 command-particlechase@description: "Main command of ParticleChase"
 command-particlechase@aliases: ["pc"]
 

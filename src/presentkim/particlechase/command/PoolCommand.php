@@ -4,7 +4,7 @@ namespace presentkim\particlechase\command;
 
 
 use pocketmine\command\{
-  Command, CommandExecutor, CommandSender, PluginCommand
+  Command, PluginCommand, CommandExecutor, CommandSender, ConsoleCommandSender
 };
 use presentkim\particlechase\util\Translation;
 use presentkim\particlechase\ParticleChaseMain as Plugin;
@@ -49,9 +49,7 @@ class PoolCommand extends PluginCommand implements CommandExecutor{
      * @return bool
      */
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
-        if (!isset($args[0])) {
-            return false;
-        } else {
+        if (isset($args[0])) {
             $label = array_shift($args);
             foreach ($this->subCommands as $key => $value) {
                 if ($value->checkLabel($label)) {
@@ -59,7 +57,27 @@ class PoolCommand extends PluginCommand implements CommandExecutor{
                     return true;
                 }
             }
-            return false;
+        }
+        $sender->sendMessage($this->getPlugin()->getServer()->getLanguage()->translateString("commands.generic.usage", [$this->getUsage($sender)]));
+        return true;
+    }
+
+    /**
+     * @param CommandSender|null $sender
+     *
+     * @return string
+     */
+    public function getUsage(CommandSender $sender = null) : string{
+        if ($sender === null) {
+            return $this->usageMessage;
+        } else {
+            $subCommands = [];
+            foreach ($this->subCommands as $key => $subCommand) {
+                if ($subCommand->checkPermission($sender)) {
+                    $subCommands[] = $subCommand->getLabel();
+                }
+            }
+            return Translation::translate("command-{$this->uname}@usage", implode(Translation::translate("command-{$this->uname}@usage-separator"), $subCommands));
         }
     }
 
@@ -81,7 +99,7 @@ class PoolCommand extends PluginCommand implements CommandExecutor{
     public function updateTranslation(){
         $this->property->setValue($this, Translation::translate("command-{$this->uname}"));
         $this->description = Translation::translate("command-{$this->uname}@description");
-        $this->usageMessage = Translation::translate("command-{$this->uname}@usage");
+        $this->usageMessage = $this->getUsage(new ConsoleCommandSender());
         $aliases = Translation::getArray("command-{$this->uname}@aliases");
         if (is_array($aliases)) {
             $this->setAliases($aliases);
