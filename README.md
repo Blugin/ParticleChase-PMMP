@@ -69,3 +69,8 @@ Main command : `/particlechase <set | remove | list | lang | reload | save>`
 - \[Fixed\] Add api 3.0.0-ALPHA11
 - \[Added\] Add website and description
 - \[Changed\] Show only subcommands that sender have permission to use
+  
+  
+---
+### v1.2.2 [![Source](https://img.shields.io/badge/source-v1.2.2-blue.png?label=source)](https://github.com/PMMPPlugin/ParticleChase/tree/v1.2.2) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/ParticleChase/v1.2.2/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/ParticleChase/releases/v1.2.2)
+- \[Fixed\] Split task class for fix Violation of PSR-0
