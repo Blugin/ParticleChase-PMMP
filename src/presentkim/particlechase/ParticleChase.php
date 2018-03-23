@@ -14,14 +14,14 @@ use presentkim\particlechase\util\Translation;
 
 class ParticleChase extends PluginBase{
 
-    /** @var self */
+    /** @var ParticleChase */
     private static $instance = null;
 
     /** @var string */
     public static $prefix = '';
 
-    /** @return self */
-    public static function getInstance() : self{
+    /** @return ParticleChase */
+    public static function getInstance() : ParticleChase{
         return self::$instance;
     }
 
