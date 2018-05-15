@@ -14,13 +14,13 @@ command-particlechase@description: "Main command of ParticleChase"
 command-particlechase@aliases: ["pc"]
 
 command-particlechase-set: "set"
-command-particlechase-set@usage: "/particlechase Set <플레이어명> <파티클명> [모드] [데이터]"
+command-particlechase-set@usage: "/particlechase Set <플레이어명 | *> <파티클명> [모드] [데이터]"
 command-particlechase-set@success: "{%0}님의 파티클이 {%1}로 설정되었습니다"
 command-particlechase-set@failure-invalid-particle: "{%0}는 잘못된 파티클명입니다"
 command-particlechase-set@aliases: ["s"]
 
 command-particlechase-remove: "remove"
-command-particlechase-remove@usage: "/particlechase Remove <플레이어명>"
+command-particlechase-remove@usage: "/particlechase Remove <플레이어명 | *>"
 command-particlechase-remove@success: "{%0}님의 파티클이 제거되었습니다"
 command-particlechase-remove@aliases: ["r"]
 

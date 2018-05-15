@@ -2,6 +2,7 @@
 
 namespace presentkim\particlechase\command\subcommands;
 
+use pocketmine\Player;
 use pocketmine\command\CommandSender;
 use presentkim\particlechase\ParticleChase as Plugin;
 use presentkim\particlechase\command\{
@@ -23,15 +24,18 @@ class RemoveSubCommand extends SubCommand{
      */
     public function onCommand(CommandSender $sender, array $args) : bool{
         if (isset($args[0])) {
-            $playerName = strtolower($args[0]);
-
             $config = $this->plugin->getConfig();
-            if ($config->exists($playerName)) {
-                $config->remove($playerName);
-                $sender->sendMessage(Plugin::$prefix . $this->translate('success', $playerName));
+            if ($args[0] === '*' && $sender instanceof Player) {
+                $playerName = $sender->getLowerCaseName();
             } else {
-                $sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
+                if (!$config->exists($args[0], true)) {
+                    $sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
+                    return true;
+                }
+                $playerName = strtolower($args[0]);
             }
+            $config->remove($playerName);
+            $sender->sendMessage(Plugin::$prefix . $this->translate('success', $playerName));
             return true;
         }
         return false;
