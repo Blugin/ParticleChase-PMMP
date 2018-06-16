@@ -2,9 +2,9 @@
 
 [![icon/192x192](assets/icon/192x192.png?raw=true)]()
 
-[![License](https://img.shields.io/github/license/PMMPPlugin/ParticleChase.svg?label=License)](LICENSE)
-[![Release](https://img.shields.io/github/release/PMMPPlugin/ParticleChase.svg?label=Release)](https://github.com/PMMPPlugin/ParticleChase/releases/latest)
-[![Download](https://img.shields.io/github/downloads/PMMPPlugin/ParticleChase/total.svg?label=Download)](https://github.com/PMMPPlugin/ParticleChase/releases/latest)
+[![License](https://img.shields.io/github/license/PresentKim/ParticleChase-PMMP.svg?label=License)](LICENSE)
+[![Release](https://img.shields.io/github/release/PresentKim/ParticleChase-PMMP.svg?label=Release)](https://github.com/PresentKim/ParticleChase-PMMP/releases/latest)
+[![Download](https://img.shields.io/github/downloads/PresentKim/ParticleChase-PMMP/total.svg?label=Download)](https://github.com/PresentKim/ParticleChase-PMMP/releases/latest)
 
 
 A plugin set particle fallow player for PocketMine-MP
