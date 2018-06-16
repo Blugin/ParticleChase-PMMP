@@ -10,7 +10,6 @@ use kim\present\particlechase\task\AddParticleTask;
 use kim\present\particlechase\util\Translation;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\TaskHandler;
-use pocketmine\Server;
 
 class ParticleChase extends PluginBase{
 	/**
@@ -35,11 +34,6 @@ class ParticleChase extends PluginBase{
 	 */
 	private $command;
 
-	/**
-	 * @var TaskHandler
-	 */
-	private $taskHandler = null;
-
 	public function onLoad() : void{
 		if(self::$instance === null){
 			self::$instance = $this;
@@ -50,12 +44,11 @@ class ParticleChase extends PluginBase{
 	public function onEnable() : void{
 		$this->load();
 
-		$this->taskHandler = Server::getInstance()->getScheduler()->scheduleRepeatingTask(new AddParticleTask($this), 2);
+		$this->getScheduler()->scheduleRepeatingTask(new AddParticleTask($this), 2);
 	}
 
 	public function onDisable(){
 		$this->save();
-		$this->taskHandler->cancel();
 	}
 
 	public function load() : void{

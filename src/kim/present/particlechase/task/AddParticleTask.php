@@ -2,6 +2,7 @@
 
 namespace kim\present\particlechase\task;
 
+use kim\present\particlechase\ParticleChase;
 use kim\present\particlechase\util\Utils;
 use pocketmine\block\BlockFactory;
 use pocketmine\item\Item;
@@ -9,10 +10,19 @@ use pocketmine\level\particle\{
 	AngryVillagerParticle, BlockForceFieldParticle, BubbleParticle, CriticalParticle, DustParticle, EnchantmentTableParticle, EnchantParticle, EntityFlameParticle, ExplodeParticle, FlameParticle, GenericParticle, HappyVillagerParticle, HeartParticle, HugeExplodeParticle, HugeExplodeSeedParticle, InkParticle, InstantEnchantParticle, ItemBreakParticle, LavaDripParticle, PortalParticle, RainSplashParticle, RedstoneParticle, SmokeParticle, SplashParticle, SporeParticle, TerrainParticle, WaterDripParticle, WaterParticle
 };
 use pocketmine\math\Vector3;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\Server;
 
-class AddParticleTask extends PluginTask{
+class AddParticleTask extends Task{
+	/**
+	 * @var ParticleChase
+	 */
+	private $owner;
+
+	public function __construct(ParticleChase $owner){
+		$this->owner = $owner;
+	}
+
 	/**
 	 * @param int $currentTick
 	 */
