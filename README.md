@@ -1,6 +1,6 @@
 [![Telegram](https://img.shields.io/badge/Telegram-PresentKim-blue.svg?logo=telegram)](https://t.me/PresentKim)
 
-[![icon/192x192](meta/icon/192x192.png?raw=true)]()
+[![icon/192x192](assets/icon/192x192.png?raw=true)]()
 
 [![License](https://img.shields.io/github/license/PMMPPlugin/ParticleChase.svg?label=License)](LICENSE)
 [![Release](https://img.shields.io/github/release/PMMPPlugin/ParticleChase.svg?label=Release)](https://github.com/PMMPPlugin/ParticleChase/releases/latest)
