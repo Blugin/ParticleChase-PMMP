@@ -1,8 +1,8 @@
 <?php
 
-namespace presentkim\particlechase\util;
+namespace kim\present\particlechase\util;
 
-use presentkim\particlechase\ParticleChase as Plugin;
+use kim\present\particlechase\ParticleChase as Plugin;
 
 class Translation{
 
