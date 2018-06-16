@@ -1,6 +1,6 @@
 <?php
 
-namespace presentkim\particlechase\task;
+namespace kim\present\particlechase\task;
 
 use pocketmine\Server;
 use pocketmine\block\BlockFactory;
@@ -9,7 +9,7 @@ use pocketmine\level\particle\{
   AngryVillagerParticle, BlockForceFieldParticle, BubbleParticle, CriticalParticle, DustParticle, EnchantmentTableParticle, EnchantParticle, EntityFlameParticle, ExplodeParticle, FlameParticle, GenericParticle, HappyVillagerParticle, HeartParticle, HugeExplodeParticle, HugeExplodeSeedParticle, InkParticle, InstantEnchantParticle, ItemBreakParticle, LavaDripParticle, PortalParticle, RainSplashParticle, RedstoneParticle, SmokeParticle, SplashParticle, SporeParticle, TerrainParticle, WaterDripParticle, WaterParticle
 };
 use pocketmine\math\Vector3;
-use presentkim\particlechase\util\Utils;
+use kim\present\particlechase\util\Utils;
 use pocketmine\scheduler\PluginTask;
 
 class AddParticleTask extends PluginTask{

@@ -1,14 +1,14 @@
 <?php
 
-namespace presentkim\particlechase\command\subcommands;
+namespace kim\present\particlechase\command\subcommands;
 
 use pocketmine\Player;
 use pocketmine\command\CommandSender;
-use presentkim\particlechase\ParticleChase as Plugin;
-use presentkim\particlechase\command\{
+use kim\present\particlechase\ParticleChase as Plugin;
+use kim\present\particlechase\command\{
   PoolCommand, SubCommand
 };
-use presentkim\particlechase\util\Translation;
+use kim\present\particlechase\util\Translation;
 
 class RemoveSubCommand extends SubCommand{
 

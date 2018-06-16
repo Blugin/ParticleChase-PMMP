@@ -1,13 +1,13 @@
 <?php
 
-namespace presentkim\particlechase\command;
+namespace kim\present\particlechase\command;
 
 
 use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender, ConsoleCommandSender
 };
-use presentkim\particlechase\ParticleChase as Plugin;
-use presentkim\particlechase\util\Translation;
+use kim\present\particlechase\ParticleChase as Plugin;
+use kim\present\particlechase\util\Translation;
 
 class PoolCommand extends PluginCommand implements CommandExecutor{
 

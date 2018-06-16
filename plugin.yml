@@ -1,6 +1,6 @@
 ---
 name:             ParticleChase
-main:             presentkim\particlechase\ParticleChase
+main:             kim\present\particlechase\ParticleChase
 version:          1.2.2
 api:              [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11, 3.0.0-ALPHA12]
 author:           PresentKim

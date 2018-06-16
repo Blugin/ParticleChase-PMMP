@@ -1,16 +1,16 @@
 <?php
 
-namespace presentkim\particlechase;
+namespace kim\present\particlechase;
 
 use pocketmine\Server;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\TaskHandler;
-use presentkim\particlechase\command\PoolCommand;
-use presentkim\particlechase\command\subcommands\{
+use kim\present\particlechase\command\PoolCommand;
+use kim\present\particlechase\command\subcommands\{
   SetSubCommand, RemoveSubCommand, ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
 };
-use presentkim\particlechase\task\AddParticleTask;
-use presentkim\particlechase\util\Translation;
+use kim\present\particlechase\task\AddParticleTask;
+use kim\present\particlechase\util\Translation;
 
 class ParticleChase extends PluginBase{
 

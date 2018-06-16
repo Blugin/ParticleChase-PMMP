@@ -1,14 +1,14 @@
 <?php
 
-namespace presentkim\particlechase\command\subcommands;
+namespace kim\present\particlechase\command\subcommands;
 
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
-use presentkim\particlechase\ParticleChase as Plugin;
-use presentkim\particlechase\command\{
+use kim\present\particlechase\ParticleChase as Plugin;
+use kim\present\particlechase\command\{
   PoolCommand, SubCommand
 };
-use presentkim\particlechase\util\{
+use kim\present\particlechase\util\{
   Translation, Utils
 };
 

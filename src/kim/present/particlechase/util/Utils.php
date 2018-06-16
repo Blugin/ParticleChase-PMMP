@@ -1,6 +1,6 @@
 <?php
 
-namespace presentkim\particlechase\util;
+namespace kim\present\particlechase\util;
 
 class Utils{
 

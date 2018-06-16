@@ -1,10 +1,10 @@
 <?php
 
-namespace presentkim\particlechase\command;
+namespace kim\present\particlechase\command;
 
 use pocketmine\command\CommandSender;
-use presentkim\particlechase\ParticleChase as Plugin;
-use presentkim\particlechase\util\{
+use kim\present\particlechase\ParticleChase as Plugin;
+use kim\present\particlechase\util\{
   Translation, Utils
 };
 
