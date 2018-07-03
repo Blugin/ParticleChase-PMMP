@@ -9,17 +9,12 @@ use kim\present\particlechase\command\subcommands\{
 use kim\present\particlechase\task\AddParticleTask;
 use kim\present\particlechase\util\Translation;
 use pocketmine\plugin\PluginBase;
-use pocketmine\scheduler\TaskHandler;
 
 class ParticleChase extends PluginBase{
-	/**
-	 * @var ParticleChase
-	 */
+	/** @var ParticleChase */
 	private static $instance = null;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	public static $prefix = '';
 
 	/**
@@ -29,9 +24,7 @@ class ParticleChase extends PluginBase{
 		return self::$instance;
 	}
 
-	/**
-	 * @var PoolCommand
-	 */
+	/** @var PoolCommand */
 	private $command;
 
 	public function onLoad() : void{
