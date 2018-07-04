@@ -14,7 +14,7 @@ use pocketmine\Server;
 
 class ListSubCommand extends SubCommand{
 	public function __construct(PoolCommand $owner){
-		parent::__construct($owner, 'remove');
+		parent::__construct($owner, 'list');
 	}
 
 	/**
