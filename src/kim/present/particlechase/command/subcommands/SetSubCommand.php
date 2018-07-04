@@ -31,7 +31,7 @@ class SetSubCommand extends SubCommand{
 				$playerName = $sender->getLowerCaseName();
 			}else{
 				if(!Server::getInstance()->getPlayerExact($args[0]) && !$config->exists($args[0], true)){
-					$sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
+					$sender->sendMessage(Translation::translate('command-generic-failure@invalid-player', $args[0]));
 					return true;
 				}
 				$playerName = strtolower($args[0]);
@@ -40,14 +40,14 @@ class SetSubCommand extends SubCommand{
 			$particleMode = $args[2] ?? 0;
 			$particleData = implode(' ', array_slice($args, 3));
 			if(!defined(Particle::class . "::TYPE_" . $particleName)){
-				$sender->sendMessage(Plugin::$prefix . $this->translate('failure-invalid-particle', $args[1]));
+				$sender->sendMessage($this->translate('failure-invalid-particle', $args[1]));
 			}else{
 				$config->set($playerName, [
 					$particleName,
 					$particleMode,
 					$particleData,
 				]);
-				$sender->sendMessage(Plugin::$prefix . $this->translate('success', $playerName, $particleName));
+				$sender->sendMessage($this->translate('success', $playerName, $particleName));
 			}
 			return true;
 		}

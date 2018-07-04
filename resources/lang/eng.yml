@@ -1,6 +1,4 @@
 ---
-prefix: "[ParticleChase] "
-
 modename@foot : "foot"
 modename@head : "head"
 

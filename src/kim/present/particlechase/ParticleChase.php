@@ -14,9 +14,6 @@ class ParticleChase extends PluginBase{
 	/** @var ParticleChase */
 	private static $instance = null;
 
-	/** @var string */
-	public static $prefix = '';
-
 	/**
 	 * @return ParticleChase
 	 */
@@ -57,8 +54,6 @@ class ParticleChase extends PluginBase{
 		}else{
 			Translation::load($langfilename);
 		}
-
-		self::$prefix = Translation::translate('prefix');
 
 		if($this->command == null){
 			$this->command = new PoolCommand($this, 'particlechase');

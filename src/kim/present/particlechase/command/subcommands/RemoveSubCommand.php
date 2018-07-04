@@ -28,13 +28,13 @@ class RemoveSubCommand extends SubCommand{
 				$playerName = $sender->getLowerCaseName();
 			}else{
 				if(!$config->exists($args[0], true)){
-					$sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@invalid-player', $args[0]));
+					$sender->sendMessage(Translation::translate('command-generic-failure@invalid-player', $args[0]));
 					return true;
 				}
 				$playerName = strtolower($args[0]);
 			}
 			$config->remove($playerName);
-			$sender->sendMessage(Plugin::$prefix . $this->translate('success', $playerName));
+			$sender->sendMessage($this->translate('success', $playerName));
 			return true;
 		}
 		return false;

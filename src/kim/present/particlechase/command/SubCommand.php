@@ -52,9 +52,9 @@ abstract class SubCommand{
 	 */
 	public function execute(CommandSender $sender, array $args) : void{
 		if(!$this->checkPermission($sender)){
-			$sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@permission'));
+			$sender->sendMessage(Translation::translate('command-generic-failure@permission'));
 		}elseif(!$this->onCommand($sender, $args)){
-			$sender->sendMessage(Plugin::$prefix . $this->usage);
+			$sender->sendMessage($this->usage);
 		}
 	}
 
