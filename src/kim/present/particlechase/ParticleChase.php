@@ -41,16 +41,6 @@ class ParticleChase extends PluginBase{
 	 * Called when the plugin is enabled
 	 */
 	protected function onEnable() : void{
-		$this->load();
-
-		$this->getScheduler()->scheduleRepeatingTask(new AddParticleTask($this), 2);
-	}
-
-	public function onDisable(){
-		$this->save();
-	}
-
-	public function load() : void{
 		$dataFolder = $this->getDataFolder();
 		if(!file_exists($dataFolder)){
 			mkdir($dataFolder, 0777, true);
@@ -69,19 +59,7 @@ class ParticleChase extends PluginBase{
 		}
 
 		self::$prefix = Translation::translate('prefix');
-		$this->reloadCommand();
-	}
 
-	public function save() : void{
-		$dataFolder = $this->getDataFolder();
-		if(!file_exists($dataFolder)){
-			mkdir($dataFolder, 0777, true);
-		}
-
-		$this->saveConfig();
-	}
-
-	public function reloadCommand() : void{
 		if($this->command == null){
 			$this->command = new PoolCommand($this, 'particlechase');
 			$this->command->createSubCommand(SetSubCommand::class);
@@ -94,6 +72,17 @@ class ParticleChase extends PluginBase{
 			$this->getServer()->getCommandMap()->unregister($this->command);
 		}
 		$this->getServer()->getCommandMap()->register(strtolower($this->getName()), $this->command);
+
+		$this->getScheduler()->scheduleRepeatingTask(new AddParticleTask($this), 2);
+	}
+
+	public function onDisable(){
+		$dataFolder = $this->getDataFolder();
+		if(!file_exists($dataFolder)){
+			mkdir($dataFolder, 0777, true);
+		}
+
+		$this->saveConfig();
 	}
 
 	/**
