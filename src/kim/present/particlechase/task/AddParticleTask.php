@@ -14,9 +14,7 @@ use pocketmine\scheduler\Task;
 use pocketmine\Server;
 
 class AddParticleTask extends Task{
-	/**
-	 * @var ParticleChase
-	 */
+	/** @var ParticleChase */
 	private $owner;
 
 	public function __construct(ParticleChase $owner){

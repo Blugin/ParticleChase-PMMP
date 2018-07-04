@@ -9,19 +9,13 @@ use pocketmine\command\{
 };
 
 class PoolCommand extends PluginCommand implements CommandExecutor{
-	/**
-	 * @var SubCommand[]
-	 */
+	/** @var SubCommand[] */
 	protected $subCommands = [];
 
-	/**
-	 * @var \ReflectionProperty
-	 */
+	/** @var \ReflectionProperty */
 	private $property = null;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	public $uname;
 
 	/**
