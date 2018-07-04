@@ -29,20 +29,4 @@ command-particlechase-list@usage: "/particlechase List <Page>"
 command-particlechase-list@head: "--- List (page {%0} of {%1}) ---"
 command-particlechase-list@item: " - {%0} => {%1}({%2}) {%3}"
 command-particlechase-list@aliases: ["l"]
-
-command-particlechase-lang: "lang"
-command-particlechase-lang@usage: "/particlechase Lang <language prefix>"
-command-particlechase-lang@success: "{%0} language file was loaded"
-command-particlechase-lang@failure: "{%0} is invalid language prefix"
-command-particlechase-lang@aliases: ["language"]
-
-command-particlechase-reload: "reload"
-command-particlechase-reload@usage: "/particlechase Reload"
-command-particlechase-reload@success: "All data was reloaded"
-command-particlechase-reload@aliases: ["rl"]
-
-command-particlechase-save: "save"
-command-particlechase-save@usage: "/particlechase Save"
-command-particlechase-save@success: "All data was saved"
-command-particlechase-save@aliases: ["sv"]
 ...

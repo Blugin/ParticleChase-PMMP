@@ -17,9 +17,6 @@ Main command : `/particlechase <set | remove | list | lang | reload | save>`
 | Set        | \<player name\> \<particle name\> \[mode\] \[data\] | Set player's particle      |
 | Remove     | \<player name\>                                     | Remove player's particle   |
 | List       | \[page\]                                            | Show particle setting list |
-| Lang       | \<language prefix\>                                 | Load default lang file     |
-| Reload     |                                                     | Reload all data            |
-| Save       |                                                     | Save all data              |
 
 
 
@@ -32,6 +29,3 @@ Main command : `/particlechase <set | remove | list | lang | reload | save>`
 | particlechase.cmd.set    | OP      | set subcommand    |
 | particlechase.cmd.remove | OP      | remove subcommand |
 | particlechase.cmd.list   | OP      | list subcommand   |
-| particlechase.cmd.lang   | OP      | lang subcommand   |
-| particlechase.cmd.reload | OP      | reload subcommand |
-| particlechase.cmd.save   | OP      | save subcommand   |

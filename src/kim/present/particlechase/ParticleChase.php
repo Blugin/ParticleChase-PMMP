@@ -4,7 +4,7 @@ namespace kim\present\particlechase;
 
 use kim\present\particlechase\command\PoolCommand;
 use kim\present\particlechase\command\subcommands\{
-	LangSubCommand, ListSubCommand, ReloadSubCommand, RemoveSubCommand, SaveSubCommand, SetSubCommand
+	ListSubCommand, RemoveSubCommand, SetSubCommand
 };
 use kim\present\particlechase\task\AddParticleTask;
 use kim\present\particlechase\util\Translation;
@@ -87,9 +87,6 @@ class ParticleChase extends PluginBase{
 			$this->command->createSubCommand(SetSubCommand::class);
 			$this->command->createSubCommand(RemoveSubCommand::class);
 			$this->command->createSubCommand(ListSubCommand::class);
-			$this->command->createSubCommand(LangSubCommand::class);
-			$this->command->createSubCommand(ReloadSubCommand::class);
-			$this->command->createSubCommand(SaveSubCommand::class);
 		}
 		$this->command->updateTranslation();
 		$this->command->updateSudCommandTranslation();

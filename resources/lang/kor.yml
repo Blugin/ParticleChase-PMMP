@@ -29,20 +29,4 @@ command-particlechase-list@usage: "/particlechase List <페이지>"
 command-particlechase-list@head: "--- 목록 (page {%0} of {%1}) ---"
 command-particlechase-list@item: " - {%0} => {%1}({%2}) {%3}"
 command-particlechase-list@aliases: ["l"]
-
-command-particlechase-lang: "lang"
-command-particlechase-lang@usage: "/particlechase Lang <언어명>"
-command-particlechase-lang@success: "{%0}언어 파일을 불러왔습니다"
-command-particlechase-lang@failure: "{%0}는 잘못된 언어명입니다"
-command-particlechase-lang@aliases: ["language"]
-
-command-particlechase-reload: "reload"
-command-particlechase-reload@usage: "/particlechase Reload"
-command-particlechase-reload@success: "모든 데이터를 불러왔습니다"
-command-particlechase-reload@aliases: ["rl"]
-
-command-particlechase-save: "save"
-command-particlechase-save@usage: "/particlechase Save"
-command-particlechase-save@success: "모든 데이터를 저장했습니다"
-command-particlechase-save@aliases: ["sv"]
 ...

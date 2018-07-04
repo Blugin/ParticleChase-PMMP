@@ -21,13 +21,4 @@ permissions:
       particlechase.cmd.list:
         description:  ParticleChase command - list
         default:      op
-      particlechase.cmd.lang:
-        description:  ParticleChase command - lang
-        default:      op
-      particlechase.cmd.reload:
-        description:  ParticleChase command - reload
-        default:      op
-      particlechase.cmd.save:
-        description:  ParticleChase command - save
-        default:      op
 ...
