@@ -27,7 +27,7 @@ class ParticleChase extends PluginBase{
 	/**
 	 * Called when the plugin is loaded, before calling onEnable()
 	 */
-	protected function onLoad() : void{
+	public function onLoad() : void{
 		if(self::$instance === null){
 			self::$instance = $this;
 			Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
@@ -37,7 +37,7 @@ class ParticleChase extends PluginBase{
 	/**
 	 * Called when the plugin is enabled
 	 */
-	protected function onEnable() : void{
+	public function onEnable() : void{
 		$dataFolder = $this->getDataFolder();
 		if(!file_exists($dataFolder)){
 			mkdir($dataFolder, 0777, true);
@@ -71,6 +71,10 @@ class ParticleChase extends PluginBase{
 		$this->getScheduler()->scheduleRepeatingTask(new AddParticleTask($this), 2);
 	}
 
+	/**
+	 * Called when the plugin is disabled
+	 * Use this to free open things and finish actions
+	 */
 	public function onDisable(){
 		$dataFolder = $this->getDataFolder();
 		if(!file_exists($dataFolder)){
