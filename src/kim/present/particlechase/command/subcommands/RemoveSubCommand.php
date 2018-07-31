@@ -5,7 +5,6 @@ namespace kim\present\particlechase\command\subcommands;
 use kim\present\particlechase\command\{
 	PoolCommand, SubCommand
 };
-use kim\present\particlechase\ParticleChase as Plugin;
 use kim\present\particlechase\util\Translation;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
