@@ -10,6 +10,11 @@ branches:
   only:
     - master
 
+# Skipping commits with particular message or from specific user
+skip_commits:
+  files:
+    - README.md
+
 # Maximum number of concurrent jobs for the project
 max_jobs: 1
 
@@ -24,7 +29,7 @@ image: Ubuntu1804
 # set clone depth
 clone_depth: 5
 
-# environment variableshttps://github.com/organization/ParticleChase-PMMP
+# environment variables
 environment:
   APPVEYOR_BUILD_URL: "${APPVEYOR_URL}/project/${APPVEYOR_ACCOUNT_NAME}/${APPVEYOR_PROJECT_NAME}/builds/${APPVEYOR_BUILD_ID}"
 
