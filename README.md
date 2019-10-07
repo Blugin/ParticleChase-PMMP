@@ -1,12 +1,12 @@
-[![Telegram](https://img.shields.io/badge/Telegram-PresentKim-blue.svg?logo=telegram)](https://t.me/PresentKim)
+# [![icon/192x192](assets/icon/192x192.png?raw=true)]() DustBin  
+__A plugin for [PMMP](https://pmmp.io) :: Set particle fallow player!__  
+  
+[![license](https://img.shields.io/github/license/organization/ParticleChase-PMMP.svg?label=License)](../blob/master/LICENSE)
+[![release](https://img.shields.io/github/release/organization/ParticleChase-PMMP.svg?label=Release)](../releases/latest)
+[![download](https://img.shields.io/github/downloads/organization/ParticleChase-PMMP/total.svg?label=Download)](../releases/latest)
+[![Build status](https://ci.appveyor.com/api/projects/status/o527umpos3igmfll/branch/master?svg=true)](https://ci.appveyor.com/project/PresentKim/humanoid-pmmp/branch/master)
 
-[![icon/192x192](assets/icon/192x192.png?raw=true)]()
-
-[![License](https://img.shields.io/github/license/Blugin/ParticleChase-PMMP.svg?label=License)](LICENSE)
-[![Release](https://img.shields.io/github/release/Blugin/ParticleChase-PMMP.svg?label=Release)](https://github.com/Blugin/ParticleChase-PMMP/releases/latest)
-[![Download](https://img.shields.io/github/downloads/Blugin/ParticleChase-PMMP/total.svg?label=Download)](https://github.com/Blugin/ParticleChase-PMMP/releases/latest) [![Build status](https://ci.appveyor.com/api/projects/status/o527umpos3igmfll?svg=true)](https://ci.appveyor.com/project/PresentKim/humanoid-pmmp)
-
-
+## What is this?   
 A plugin set particle fallow player for PocketMine-MP
 
 ## Command
