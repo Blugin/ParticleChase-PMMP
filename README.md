@@ -1,9 +1,9 @@
 # [![icon/192x192](assets/icon/192x192.png?raw=true)]() DustBin  
 __A plugin for [PMMP](https://pmmp.io) :: Set particle fallow player!__  
   
-[![license](https://img.shields.io/github/license/organization/ParticleChase-PMMP.svg?label=License)](../blob/master/LICENSE)
-[![release](https://img.shields.io/github/release/organization/ParticleChase-PMMP.svg?label=Release)](../releases/latest)
-[![download](https://img.shields.io/github/downloads/organization/ParticleChase-PMMP/total.svg?label=Download)](../releases/latest)
+[![license](https://img.shields.io/github/license/organization/ParticleChase-PMMP.svg?label=License)](../master/LICENSE)
+[![release](https://img.shields.io/github/release/organization/ParticleChase-PMMP.svg?label=Release)](../../releases/latest)
+[![download](https://img.shields.io/github/downloads/organization/ParticleChase-PMMP/total.svg?label=Download)](../../releases/latest)
 [![Build status](https://ci.appveyor.com/api/projects/status/o527umpos3igmfll/branch/master?svg=true)](https://ci.appveyor.com/project/PresentKim/humanoid-pmmp/branch/master)
 
 ## What is this?   
